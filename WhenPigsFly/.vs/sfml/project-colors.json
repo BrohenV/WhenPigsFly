@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4df68672-863d-45fc-b8a5-95c2e13ce452": {
+      "ProjectGuid": "4df68672-863d-45fc-b8a5-95c2e13ce452",
+      "DisplayName": "sfml",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
