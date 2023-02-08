@@ -1,1 +1,4 @@
-﻿  sfml.vcxproj -> C:\Users\MSI\Desktop\WhenPigsFly\WhenPigsFly\x64\Debug\sfml.exe
+﻿  Scene_play.cpp
+C:\Users\MSI\Desktop\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(283,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\MSI\Desktop\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(284,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  sfml.vcxproj -> C:\Users\MSI\Desktop\WhenPigsFly\WhenPigsFly\x64\Debug\sfml.exe

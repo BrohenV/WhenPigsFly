@@ -28,22 +28,22 @@ void Scene_Play::init(const std::string& levelPath)
 
 void Scene_Play::registerActions()
 {
-	registerAction(sf::Keyboard::P,			"PAUSE");
-	registerAction(sf::Keyboard::Escape,	"QUIT");
+	registerAction(sf::Keyboard::P, "PAUSE");
+	registerAction(sf::Keyboard::Escape, "QUIT");
 
-	registerAction(sf::Keyboard::T,			"TOGGLE_TEXTURE");
-	registerAction(sf::Keyboard::C,			"TOGGLE_COLLISION");
-	registerAction(sf::Keyboard::G,			"TOGGLE_GRID"); 
+	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE");
+	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION");
+	registerAction(sf::Keyboard::G, "TOGGLE_GRID");
 
-	registerAction(sf::Keyboard::A,			"LEFT");
-	registerAction(sf::Keyboard::Left,		"LEFT");
-	registerAction(sf::Keyboard::D,			"RIGHT");
-	registerAction(sf::Keyboard::Right,		"RIGHT");
+	registerAction(sf::Keyboard::A, "LEFT");
+	registerAction(sf::Keyboard::Left, "LEFT");
+	registerAction(sf::Keyboard::D, "RIGHT");
+	registerAction(sf::Keyboard::Right, "RIGHT");
 
-	registerAction(sf::Keyboard::W,			"JUMP");
-	registerAction(sf::Keyboard::Up,		"JUMP");
- 
-	registerAction(sf::Keyboard::Space,		"SHOOT");
+	registerAction(sf::Keyboard::W, "JUMP");
+	registerAction(sf::Keyboard::Up, "JUMP");
+
+	registerAction(sf::Keyboard::Space, "SHOOT");
 }
 
 
@@ -57,59 +57,59 @@ void Scene_Play::update()
 	sLifespan();
 	sCollision();
 	sAnimation();
- 
+
 	playerCheckState();
 }
- 
+
 
 void Scene_Play::sMovement()
 {
 	// player movement 
 	auto& pt = m_player->getComponent<CTransform>();
 	pt.vel.x = 0.f;
-	if (m_player->getComponent<CInput>().left)		
+	if (m_player->getComponent<CInput>().left)
 		pt.vel.x -= 1;
 
-	if (m_player->getComponent<CInput>().right)		
+	if (m_player->getComponent<CInput>().right)
 		pt.vel.x += 1;
 
 	if (m_player->getComponent<CInput>().up)
 	{
 		m_player->getComponent<CInput>().up = false;
-		pt.vel.y = - m_playerConfig.JUMP;
+		pt.vel.y = -m_playerConfig.JUMP;
 	}
 
-	
+
 	// gravity
 	pt.vel.y += m_playerConfig.GRAVITY;
- 	pt.vel.x  = pt.vel.x *  m_playerConfig.SPEED;
-	
+	pt.vel.x = pt.vel.x * m_playerConfig.SPEED;
+
 	// facing direction
-	if (pt.vel.x < -0.1) 
+	if (pt.vel.x < -0.1)
 		m_player->getComponent<CState>().set(CState::isFacingLeft);
-	if (pt.vel.x > 0.1) 
+	if (pt.vel.x > 0.1)
 		m_player->getComponent<CState>().unSet(CState::isFacingLeft);
 
-	
-	
+
+
 	// move all entities
 	for (auto e : m_entityManager.getEntities())
 	{
-			auto& tx = e->getComponent<CTransform>();
-			tx.prevPos = tx.pos;
-			tx.pos += tx.vel;
+		auto& tx = e->getComponent<CTransform>();
+		tx.prevPos = tx.pos;
+		tx.pos += tx.vel;
 	}
 }
 
 void Scene_Play::playerCheckState()
 {
-	auto & tx = m_player->getComponent<CTransform>();
+	auto& tx = m_player->getComponent<CTransform>();
 	auto& state = m_player->getComponent<CState>();
-	
+
 	// face the right way
 	if (std::abs(tx.vel.x) > 0.1f)
 		tx.scale.x = (tx.vel.x > 0.f) ? 1.f : -1.f;
-			
+
 	if (!state.test(CState::isGrounded))
 	{
 		m_player->getComponent<CAnimation>().animation = m_game->assets().getAnimation("Air");
@@ -125,7 +125,7 @@ void Scene_Play::playerCheckState()
 				m_player->addComponent<CAnimation>(m_game->assets().getAnimation("Run"), true);
 				state.set(CState::isRunning);
 			}
-		} 
+		}
 		else
 		{
 			m_player->addComponent<CAnimation>(m_game->assets().getAnimation("Stand"), true);
@@ -231,7 +231,7 @@ void Scene_Play::sRender()
 	{
 		for (auto e : m_entityManager.getEntities())
 		{
-			
+
 			if (e->hasComponent<CAnimation>())
 			{
 				auto& transform = e->getComponent<CTransform>();
@@ -275,7 +275,7 @@ void Scene_Play::sRender()
 	if (m_drawGrid)
 	{
 		float left = view.getCenter().x - view.getSize().x / 2.f;
-		float right = left + view.getSize().x; 
+		float right = left + view.getSize().x;
 		float top = view.getCenter().y - view.getSize().y / 2.f;
 		float bot = top + view.getSize().y;
 
@@ -298,7 +298,7 @@ void Scene_Play::sRender()
 			lines.append(sf::Vector2f((firstCol + x) * m_gridSize.x, top));
 			lines.append(sf::Vector2f((firstCol + x) * m_gridSize.x, bot));
 		}
-		 
+
 
 		// horizontal lines
 		for (int y{ 0 }; y <= nRows; ++y)
@@ -307,20 +307,20 @@ void Scene_Play::sRender()
 			lines.append(sf::Vertex(sf::Vector2f(right, ROW0 - (lastRow - y) * m_gridSize.y)));
 		}
 
-		 
+
 		// grid coordinates
 		// (firstCol, lastRow) is the bottom left corner of the view 
 		for (int x{ 0 }; x <= nCols; ++x)
 		{
 			for (int y{ 0 }; y <= nRows; ++y)
 			{
-				std::string label = std::string("(" + std::to_string(firstCol + x) +", " + std::to_string(lastRow - y) + ")");
+				std::string label = std::string("(" + std::to_string(firstCol + x) + ", " + std::to_string(lastRow - y) + ")");
 				gridText.setString(label);
-				gridText.setPosition((x + firstCol) * m_gridSize.x, ROW0 - (lastRow - y +1) * m_gridSize.y);
+				gridText.setPosition((x + firstCol) * m_gridSize.x, ROW0 - (lastRow - y + 1) * m_gridSize.y);
 				m_game->window().draw(gridText);
 			}
 		}
-		
+
 
 		m_game->window().draw(lines);
 	}
@@ -334,45 +334,45 @@ void Scene_Play::sDoAction(const Action& action)
 	// On Key Press
 	if (action.type() == "START")
 	{
-			 if (action.name() == "TOGGLE_TEXTURE")		{ m_drawTextures = !m_drawTextures; }
-		else if (action.name() == "TOGGLE_COLLISION")	{ m_drawCollision = !m_drawCollision; }
-		else if (action.name() == "TOGGLE_GRID")		{ m_drawGrid = !m_drawGrid; }
-		else if (action.name() == "PAUSE")				{ setPaused(!m_isPaused); }
-		else if (action.name() == "QUIT")				{ onEnd(); }
+		if (action.name() == "TOGGLE_TEXTURE") { m_drawTextures = !m_drawTextures; }
+		else if (action.name() == "TOGGLE_COLLISION") { m_drawCollision = !m_drawCollision; }
+		else if (action.name() == "TOGGLE_GRID") { m_drawGrid = !m_drawGrid; }
+		else if (action.name() == "PAUSE") { setPaused(!m_isPaused); }
+		else if (action.name() == "QUIT") { onEnd(); }
 
 
 		// Player control
-		else if (action.name() == "LEFT")				{ m_player->getComponent<CInput>().left = true; }
-		else if (action.name() == "RIGHT")				{ m_player->getComponent<CInput>().right = true; }	
+		else if (action.name() == "LEFT") { m_player->getComponent<CInput>().left = true; }
+		else if (action.name() == "RIGHT") { m_player->getComponent<CInput>().right = true; }
 
-  
-		else if (action.name() == "JUMP")	{		
-				 if (m_player->getComponent<CInput>().canJump && m_player->getComponent<CState>().test(CState::isGrounded))
-				 {
-					 m_player->getComponent<CInput>().up = true;
-					 m_player->getComponent<CInput>().canJump = false;
-				 }
-			 }
+
+		else if (action.name() == "JUMP") {
+			if (m_player->getComponent<CInput>().canJump)
+			{
+				m_player->getComponent<CInput>().up = true;
+				//m_player->getComponent<CInput>().canJump = false;
+			}
+		}
 
 		else if (action.name() == "SHOOT") {
-				 if (m_player->getComponent<CInput>().canShoot)
-				 {
-					 spawnBullet(m_player);
-					 m_player->getComponent<CInput>().shoot = true;
-					 m_player->getComponent<CInput>().canShoot = false;
-				 }
-			 }
+			if (m_player->getComponent<CInput>().canShoot)
+			{
+				spawnBullet(m_player);
+				m_player->getComponent<CInput>().shoot = true;
+				m_player->getComponent<CInput>().canShoot = false;
+			}
+		}
 	}
 
 
 	// on Key Release 
 	else if (action.type() == "END")
 	{
-			 if (action.name() == "LEFT")	{ m_player->getComponent<CInput>().left = false; }
-		else if (action.name() == "RIGHT")	{ m_player->getComponent<CInput>().right = false; }
-		else if (action.name() == "JUMP")	{ m_player->getComponent<CInput>().up = false;  }
-		else if (action.name() == "SHOOT")  { m_player->getComponent<CInput>().canShoot = true; }
-		
+		if (action.name() == "LEFT") { m_player->getComponent<CInput>().left = false; }
+		else if (action.name() == "RIGHT") { m_player->getComponent<CInput>().right = false; }
+		else if (action.name() == "JUMP") { m_player->getComponent<CInput>().up = false; }
+		else if (action.name() == "SHOOT") { m_player->getComponent<CInput>().canShoot = true; }
+
 	}
 }
 
@@ -389,7 +389,7 @@ void Scene_Play::sAnimation()
 		{
 			anim.animation.update(anim.repeat);
 			if (anim.animation.hasEnded())
-				 e->destroy();
+				e->destroy();
 		}
 	}
 }
@@ -412,9 +412,9 @@ Vec2 Scene_Play::gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity
 {
 	// (left, bot) of grix,gidy)
 
-    // this is for side scroll, and based on window height being the same as world height
-    // to be more generic and support scrolling up and down as well as left and right it
-    // should be based on world size not window size
+	// this is for side scroll, and based on window height being the same as world height
+	// to be more generic and support scrolling up and down as well as left and right it
+	// should be based on world size not window size
 	float x = 0.f + gridX * m_gridSize.x;
 	float y = 768.f - gridY * m_gridSize.y;
 
@@ -459,7 +459,7 @@ void Scene_Play::loadFromFile(const std::string& path)
 			auto e = m_entityManager.addEntity("tile");
 			e->addComponent<CAnimation>(m_game->assets().getAnimation(name), true);
 			e->addComponent<CBoundingBox>(m_game->assets().getAnimation(name).getSize());
-			e->addComponent<CTransform>(gridToMidPixel(gx,gy,e));
+			e->addComponent<CTransform>(gridToMidPixel(gx, gy, e));
 		}
 		else if (token == "Dec")
 		{
@@ -473,14 +473,14 @@ void Scene_Play::loadFromFile(const std::string& path)
 		}
 		else if (token == "Player")
 		{
-			
+
 			confFile >>
 				m_playerConfig.X >>
 				m_playerConfig.Y >>
 				m_playerConfig.CW >>
 				m_playerConfig.CH >>
 				m_playerConfig.SPEED >>
-				m_playerConfig.JUMP >> 
+				m_playerConfig.JUMP >>
 				m_playerConfig.MAXSPEED >>
 				m_playerConfig.GRAVITY >>
 				m_playerConfig.WEAPON;
@@ -499,7 +499,7 @@ void Scene_Play::loadFromFile(const std::string& path)
 
 		confFile >> token;
 	}
-} 
+}
 
 
 void Scene_Play::spawnPlayer()
@@ -507,10 +507,10 @@ void Scene_Play::spawnPlayer()
 
 	m_player = m_entityManager.addEntity("player");
 	m_player->addComponent<CAnimation>(m_game->assets().getAnimation("Run"), true);
-	m_player->addComponent<CTransform>(gridToMidPixel(m_playerConfig.X, m_playerConfig.Y, m_player ));
+	m_player->addComponent<CTransform>(gridToMidPixel(m_playerConfig.X, m_playerConfig.Y, m_player));
 	m_player->addComponent<CBoundingBox>(Vec2(m_playerConfig.CW, m_playerConfig.CH));
 	m_player->addComponent<CState>();
-	
+
 }
 
 void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
