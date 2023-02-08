@@ -1,4 +1,5 @@
 #include "Scene_Menu.h"
+#include "Scene_Options.h"
 #include "Scene_play.h"
 #include <memory>
 
@@ -33,7 +34,7 @@ void Scene_Menu::init()
 	m_levelPaths.push_back("../assets/options.txt");
 	m_levelPaths.push_back("QUIT");
 
-	m_menuText.setFont(m_game->assets().getFont("Megaman"));
+	m_menuText.setFont(m_game->assets().getFont("Arial"));
 
 	const size_t CHAR_SIZE{ 64 };
 	m_menuText.setCharacterSize(CHAR_SIZE);
@@ -60,7 +61,7 @@ void Scene_Menu::sRender()
 	static const sf::Color backgroundColor(100, 100, 255);
 
 	sf::Text footer("A game by Brohen Verhoeven",
-		m_game->assets().getFont("Megaman"), 20);
+		m_game->assets().getFont("Arial"), 20);
 	footer.setFillColor(normalColor);
 	footer.setPosition(32, 700);
 
@@ -75,7 +76,7 @@ void Scene_Menu::sRender()
 	for (size_t i{ 0 }; i < m_menuStrings.size(); ++i)
 	{
 		m_menuText.setFillColor((i == m_menuIndex ? selectedColor : normalColor));
-		m_menuText.setPosition(32, 32 + (i + 1) * 96);
+		m_menuText.setPosition(textwidth / 2, 32 + (i + 1) * 96);
 		m_menuText.setString(m_menuStrings.at(i));
 		m_game->window().draw(m_menuText);
 	}

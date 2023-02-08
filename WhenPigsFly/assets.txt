@@ -1,7 +1,7 @@
 Window 1280 720 60 0
 Font Arial 		../assets/fonts/arial.ttf  
 Font Mario 		../assets/fonts/arial.ttf  
-Font Megaman 	../assets/fonts/megaman.ttf  
+Font Megaman 		../assets/fonts/megaman.ttf  
 
 
 Texture TexStand 	../assets/mario/stand.png

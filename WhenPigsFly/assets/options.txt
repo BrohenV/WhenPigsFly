@@ -1,0 +1,4 @@
+Window 1280 720 60 0
+Font Arial 		../assets/fonts/arial.ttf  
+Font Mario 		../assets/fonts/arial.ttf  
+Font Megaman 		../assets/fonts/megaman.ttf  

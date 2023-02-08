@@ -11,18 +11,7 @@ Dec CloudSmall	2	7
 Dec CloudBig	12	8
 Dec CloudBig	22	7
 
-Tile Question	6	3
-Tile Question	8	3
-Tile Question	10	3
-Tile Question	7	6
-Tile Question	9	6
-Tile Question	8	9
-
-Tile Brick		5	3
-Tile Brick		7	3
-Tile Brick		9	3
-Tile Brick		11	3
-Tile Brick		8	6
+Dec Ground	3	3
 
 
 Tile Ground 	0	0

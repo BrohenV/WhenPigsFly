@@ -150,6 +150,7 @@
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene_Menu.cpp" />
+    <ClCompile Include="Scene_Options.cpp" />
     <ClCompile Include="Scene_play.cpp" />
     <ClCompile Include="sfml.cpp" />
     <ClCompile Include="Utilities.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene_Menu.h" />
+    <ClInclude Include="Scene_Options.h" />
     <ClInclude Include="Scene_play.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Vec2.h" />
