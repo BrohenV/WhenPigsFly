@@ -18,84 +18,84 @@
     <ClCompile Include="sfml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Action.cpp">
+    <ClCompile Include="Action.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Animation.cpp">
+    <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Assets.cpp">
+    <ClCompile Include="Assets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Entity.cpp">
+    <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\EntityManager.cpp">
+    <ClCompile Include="EntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\GameEngine.cpp">
+    <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Physics.cpp">
+    <ClCompile Include="Physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Scene.cpp">
+    <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Scene_Menu.cpp">
+    <ClCompile Include="Scene_Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Scene_play.cpp">
+    <ClCompile Include="Scene_play.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Utilities.cpp">
+    <ClCompile Include="Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Vec2.cpp">
+    <ClCompile Include="Vec2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Action.h">
+    <ClInclude Include="Action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Animation.h">
+    <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Assets.h">
+    <ClInclude Include="Assets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Common.h">
+    <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Components.h">
+    <ClInclude Include="Components.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Entity.h">
+    <ClInclude Include="Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\EntityManager.h">
+    <ClInclude Include="EntityManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\GameEngine.h">
+    <ClInclude Include="GameEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Physics.h">
+    <ClInclude Include="Physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Scene.h">
+    <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Scene_Menu.h">
+    <ClInclude Include="Scene_Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Scene_play.h">
+    <ClInclude Include="Scene_play.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Utilities.h">
+    <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\MarioDemo\MarioDemo\MarioDemo\Vec2.h">
+    <ClInclude Include="Vec2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
