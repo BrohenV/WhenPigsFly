@@ -5,6 +5,7 @@
 #include "Physics.h"
 
 #include <string>
+#include "Utilities.h"
 
 Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 	: Scene(gameEngine)
@@ -52,15 +53,23 @@ void Scene_Play::update()
 	m_entityManager.update();
 
 	// TODO pause function
-
-	sMovement();
-	sLifespan();
-	sCollision();
-	sAnimation();
-
-	playerCheckState();
+	if (!m_isPaused) {
+		sMovement();
+		sLifespan();
+		sCollision();
+		sAnimation();
+		playerCheckState();
+	}
 }
 
+sf::FloatRect Scene_Play::getViewBounds() {
+	sf::FloatRect bounds;
+	bounds.left = m_worldView.getCenter().x - m_worldView.getSize().x / 2.f;
+	bounds.top = m_worldView.getCenter().y - m_worldView.getSize().y / 2.f;
+	bounds.width = m_worldView.getSize().x;
+	bounds.height = m_worldView.getSize().y;
+	return bounds;
+}
 
 void Scene_Play::sMovement()
 {
@@ -323,6 +332,14 @@ void Scene_Play::sRender()
 
 
 		m_game->window().draw(lines);
+	}
+
+	if (m_isPaused) {
+		sf::Text paused("PAUSED", m_game->assets().getFont("Arial"), 128);
+		centerOrigin(paused);
+		auto bounds = getViewBounds();
+		paused.setPosition(m_game->window().getSize().x / 2.f - 6 / 2, 20);
+		m_game->window().draw(paused);
 	}
 
 	m_game->window().display();

@@ -35,6 +35,9 @@ public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
 	
 	void update() override;
+	sf::View                        m_worldView;
+	sf::FloatRect                   m_worldBounds;
+	sf::FloatRect getViewBounds();
 	void sRender() override;
 	void sDoAction(const Action& action) override;
 

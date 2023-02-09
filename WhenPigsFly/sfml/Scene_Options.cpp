@@ -25,7 +25,7 @@ void Scene_Options::init()
 
 	m_title = "Options";
 	m_menuStrings.push_back("Controls");
-	m_menuStrings.push_back("Options");
+	m_menuStrings.push_back("Summary");
 	m_menuStrings.push_back("Quit");
 
 	m_levelPaths.push_back("../assets/level1.txt");
