@@ -31,7 +31,6 @@ void Scene_Menu::init()
 	m_menuStrings.push_back("Quit");
 
 	m_levelPaths.push_back("../assets/level1.txt");
-	m_levelPaths.push_back("../assets/options.txt");
 	m_levelPaths.push_back("QUIT");
 
 	m_menuText.setFont(m_game->assets().getFont("Arial"));
@@ -60,7 +59,7 @@ void Scene_Menu::sRender()
 
 	static const sf::Color backgroundColor(100, 100, 255);
 
-	sf::Text footer("A game by Brohen Verhoeven",
+	sf::Text footer("Esc to go back / Arrow keys to navigate",
 		m_game->assets().getFont("Arial"), 20);
 	footer.setFillColor(normalColor);
 	footer.setPosition(32, 700);
@@ -101,7 +100,18 @@ void Scene_Menu::sDoAction(const Action& action)
 		}
 		else if (action.name() == "PLAY")
 		{
-			m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game, m_levelPaths[m_menuIndex]));
+			switch (m_menuIndex) {
+				case 0:
+					m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game, m_levelPaths[m_menuIndex]));
+					break;
+				case 1:
+					m_game->changeScene("OPTIONS", std::make_shared<Scene_Options>(m_game));
+					break;
+				default:
+					//error
+					std::cout << "Error";
+			}
+			
 		}
 		else if (action.name() == "QUIT")
 		{

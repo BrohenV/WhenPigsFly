@@ -2,6 +2,9 @@
 #include "Scene_Options.h"
 #include "Scene_play.h"
 #include <memory>
+#include "Scene_Menu.h"
+#include "Scene_Con.h"
+#include "Scene_Sum.h"
 
 void Scene_Options::onEnd()
 {
@@ -26,11 +29,7 @@ void Scene_Options::init()
 	m_title = "Options";
 	m_menuStrings.push_back("Controls");
 	m_menuStrings.push_back("Summary");
-	m_menuStrings.push_back("Quit");
-
-	m_levelPaths.push_back("../assets/level1.txt");
-	m_levelPaths.push_back("../assets/options.txt");
-	m_levelPaths.push_back("QUIT");
+	m_menuStrings.push_back("Audio");
 
 	m_menuText.setFont(m_game->assets().getFont("Arial"));
 
@@ -58,8 +57,8 @@ void Scene_Options::sRender()
 
 	static const sf::Color backgroundColor(100, 100, 255);
 
-	sf::Text footer("A game by Brohen Verhoeven",
-		m_game->assets().getFont("Megaman"), 20);
+	sf::Text footer("Esc to go back / Arrow keys to navigate",
+		m_game->assets().getFont("Arial"), 20);
 	footer.setFillColor(normalColor);
 	footer.setPosition(32, 700);
 
@@ -99,11 +98,25 @@ void Scene_Options::sDoAction(const Action& action)
 		}
 		else if (action.name() == "PLAY")
 		{
-			m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game, m_levelPaths[m_menuIndex]));
+			switch (m_menuIndex) {
+			case 0:
+				m_game->changeScene("CONTROLS", std::make_shared<Scene_Con>(m_game));
+				break;
+			case 1:
+				m_game->changeScene("SUMMARY", std::make_shared<Scene_Sum>(m_game));
+				break;
+			case 2:
+				//m_game->changeScene("AUDIO", std::make_shared<Scene_Audio>(m_game));
+				break;
+			default:
+				//error
+				std::cout << "Error";
+			}
+			
 		}
 		else if (action.name() == "QUIT")
 		{
-			onEnd();
+			m_game->changeScene("MENU", std::make_shared<Scene_Menu>(m_game));
 		}
 	}
 
