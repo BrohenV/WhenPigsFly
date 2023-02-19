@@ -17,11 +17,6 @@ Scene_Sum::Scene_Sum(GameEngine* gameEngine)
 
 void Scene_Sum::init()
 {
-	registerAction(sf::Keyboard::W, "UP");
-	registerAction(sf::Keyboard::Up, "UP");
-	registerAction(sf::Keyboard::S, "DOWN");
-	registerAction(sf::Keyboard::Down, "DOWN");
-	registerAction(sf::Keyboard::D, "PLAY");
 	registerAction(sf::Keyboard::Escape, "QUIT");
 
 	m_title = "Summary";

@@ -5,6 +5,8 @@
 #include "Scene_Menu.h"
 #include "Scene_Con.h"
 #include "Scene_Sum.h"
+#include "Scene_Credits.h"
+#include "Scene_Audio.h"
 
 void Scene_Options::onEnd()
 {
@@ -29,6 +31,7 @@ void Scene_Options::init()
 	m_title = "Options";
 	m_menuStrings.push_back("Controls");
 	m_menuStrings.push_back("Summary");
+	m_menuStrings.push_back("Credits");
 	m_menuStrings.push_back("Audio");
 
 	m_menuText.setFont(m_game->assets().getFont("Arial"));
@@ -73,7 +76,7 @@ void Scene_Options::sRender()
 	for (size_t i{ 0 }; i < m_menuStrings.size(); ++i)
 	{
 		m_menuText.setFillColor((i == m_menuIndex ? selectedColor : normalColor));
-		m_menuText.setPosition(textwidth / 2, 32 + (i + 1) * 96);
+		m_menuText.setPosition(textwidth / 10, (i + 1) * 96);
 		m_menuText.setString(m_menuStrings.at(i));
 		m_game->window().draw(m_menuText);
 	}
@@ -106,7 +109,10 @@ void Scene_Options::sDoAction(const Action& action)
 				m_game->changeScene("SUMMARY", std::make_shared<Scene_Sum>(m_game));
 				break;
 			case 2:
-				//m_game->changeScene("AUDIO", std::make_shared<Scene_Audio>(m_game));
+				m_game->changeScene("CREDITS", std::make_shared<Scene_Credits>(m_game));
+				break;
+			case 3:
+				m_game->changeScene("AUDIO", std::make_shared<Scene_Audio>(m_game));
 				break;
 			default:
 				//error

@@ -3,7 +3,6 @@
 #include "Entity.h"
 #include "Components.h"
 #include "Physics.h"
-
 #include <string>
 #include "Utilities.h"
 
@@ -14,12 +13,9 @@ Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 	init(m_levelPath);
 }
 
-
-
 void Scene_Play::init(const std::string& levelPath)
 {
 	registerActions();
-
 
 	m_gridText.setCharacterSize(12);
 	m_gridText.setFont(m_game->assets().getFont("Arial"));
@@ -85,7 +81,7 @@ void Scene_Play::sMovement()
 	if (m_player->getComponent<CInput>().up)
 	{
 		m_player->getComponent<CInput>().up = false;
-		pt.vel.y = -m_playerConfig.JUMP;
+		pt.vel.y = -m_playerConfig.JUMP + 5;
 	}
 
 
@@ -357,11 +353,9 @@ void Scene_Play::sDoAction(const Action& action)
 		else if (action.name() == "PAUSE") { setPaused(!m_isPaused); }
 		else if (action.name() == "QUIT") { onEnd(); }
 
-
 		// Player control
 		else if (action.name() == "LEFT") { m_player->getComponent<CInput>().left = true; }
 		else if (action.name() == "RIGHT") { m_player->getComponent<CInput>().right = true; }
-
 
 		else if (action.name() == "JUMP") {
 			if (m_player->getComponent<CInput>().canJump)
@@ -381,7 +375,6 @@ void Scene_Play::sDoAction(const Action& action)
 		}
 	}
 
-
 	// on Key Release 
 	else if (action.type() == "END")
 	{
@@ -389,7 +382,6 @@ void Scene_Play::sDoAction(const Action& action)
 		else if (action.name() == "RIGHT") { m_player->getComponent<CInput>().right = false; }
 		else if (action.name() == "JUMP") { m_player->getComponent<CInput>().up = false; }
 		else if (action.name() == "SHOOT") { m_player->getComponent<CInput>().canShoot = true; }
-
 	}
 }
 

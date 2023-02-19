@@ -17,11 +17,6 @@ Scene_Con::Scene_Con(GameEngine* gameEngine)
 
 void Scene_Con::init()
 {
-	registerAction(sf::Keyboard::W, "UP");
-	registerAction(sf::Keyboard::Up, "UP");
-	registerAction(sf::Keyboard::S, "DOWN");
-	registerAction(sf::Keyboard::Down, "DOWN");
-	registerAction(sf::Keyboard::D, "PLAY");
 	registerAction(sf::Keyboard::Escape, "QUIT");
 
 	m_title = "Menu & Game Controls";

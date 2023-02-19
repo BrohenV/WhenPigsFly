@@ -31,6 +31,7 @@ void Scene_Menu::init()
 	m_menuStrings.push_back("Quit");
 
 	m_levelPaths.push_back("../assets/level1.txt");
+	m_levelPaths.push_back("OPTIONS");
 	m_levelPaths.push_back("QUIT");
 
 	m_menuText.setFont(m_game->assets().getFont("Arial"));
@@ -110,13 +111,12 @@ void Scene_Menu::sDoAction(const Action& action)
 				default:
 					//error
 					std::cout << "Error";
+					break;
 			}
-			
 		}
 		else if (action.name() == "QUIT")
 		{
 			onEnd();
 		}
 	}
-
 }

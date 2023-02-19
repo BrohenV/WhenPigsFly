@@ -149,7 +149,9 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Scene_Audio.cpp" />
     <ClCompile Include="Scene_Con.cpp" />
+    <ClCompile Include="Scene_Credits.cpp" />
     <ClCompile Include="Scene_Menu.cpp" />
     <ClCompile Include="Scene_Options.cpp" />
     <ClCompile Include="Scene_play.cpp" />
@@ -169,7 +171,9 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene_Audio.h" />
     <ClInclude Include="Scene_Con.h" />
+    <ClInclude Include="Scene_Credits.h" />
     <ClInclude Include="Scene_Menu.h" />
     <ClInclude Include="Scene_Options.h" />
     <ClInclude Include="Scene_play.h" />
