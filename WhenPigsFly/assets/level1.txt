@@ -1,14 +1,10 @@
 # This is the level1.txt file that should display the world
 
-Tile PipeTall	15	0
-Tile PipeTall	21	0
-
-Dec BushBig	0	1
-Dec CloudSmall	2	7
-Dec CloudBig	12	8
-Dec CloudBig	22	7
-
-Dec Ground	3	3
+#Dec ButcherShop	0	1
+#Dec BuildingTall	6	0
+#Dec BuildingSmall	10	1
+#Dec BuildingTall	13	1
+#Dec BuildingMed	17	1
 
 # Solid Ground
 Tile Ground 	0	0
@@ -107,6 +103,11 @@ Tile Ground	92	0
 Tile Ground	93	0
 Tile Ground	94	0
 Tile Ground	95	0
+Tile Ground	96	0
+Tile Ground	97	0
+Tile Ground	98	0
+Tile Ground	99	0
+Tile Ground	100	0
 
 
 #     gX, gY, cW, cH, sX, sY,  sM,  g,   bullet 

@@ -26,22 +26,22 @@ Texture TexPoleTop 	../assets/mario/flagtop.png
 Texture TexFlag 	../assets/mario/flag.png
 
 # City Textures
-Texture TexTallBuilding
-Texture TexSmallBuilding
-Texture TexTrafficLight
-Texture TexCar
-Texture TexButcherShop
+#Texture TexTallBuilding
+#Texture TexSmallBuilding
+#Texture TexTrafficLight
+#Texture TexCar
+#Texture TexButcherShop
 
 # Forest Textures
-Texture TexTree
-Texture TexBranch
-Texture TexNest
-Texture TexFallenTree
+#Texture TexTree
+#Texture TexBranch
+#Texture TexNest
+#Texture TexFallenTree
 
 # Canyon Textures
-Texture TexHole
-Texture TexSun
-Texture TexHeatWave
+#Texture TexHole
+#Texture TexSun
+#Texture TexHeatWave
 
 Animation Stand 		TexStand 	1 	0 
 Animation Run 			TexRun 		8 	5

@@ -59,6 +59,8 @@ public:
 	void spawnPlayer();
 	void spawnBullet(std::shared_ptr<Entity>);
 
+	void sRemoveEntitiesOutOfGame();
+
 	 
 	
 

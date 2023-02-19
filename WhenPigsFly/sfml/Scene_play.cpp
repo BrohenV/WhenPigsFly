@@ -141,7 +141,6 @@ void Scene_Play::playerCheckState()
 
 void Scene_Play::sLifespan()
 {
-
 	// move all entities
 	for (auto e : m_entityManager.getEntities("bullet"))
 	{
@@ -157,7 +156,6 @@ void Scene_Play::sLifespan()
 			}
 		}
 	}
-
 }
 
 void Scene_Play::sEnemySpawner()
@@ -182,7 +180,6 @@ void Scene_Play::sCollision()
 				auto& ptx = p->getComponent<CTransform>();
 				auto ttx = t->getComponent<CTransform>();
 
-
 				// collision is in the y direction
 				if (prevOverlap.x > 0)
 				{
@@ -198,7 +195,6 @@ void Scene_Play::sCollision()
 					}
 					p->getComponent<CTransform>().vel.y = 0.f;
 				}
-
 
 				// collision is in the x direction
 				if (prevOverlap.y > 0)
@@ -229,7 +225,6 @@ void Scene_Play::sRender()
 	sf::View view = m_game->window().getView();
 	view.setCenter(centerX, m_game->window().getSize().y - view.getCenter().y);
 	m_game->window().setView(view);
-
 
 	// draw all entities
 	if (m_drawTextures)
@@ -297,13 +292,11 @@ void Scene_Play::sRender()
 		lines.clear();
 
 		// vertical lines
-
 		for (int x{ 0 }; x <= nCols; ++x)
 		{
 			lines.append(sf::Vector2f((firstCol + x) * m_gridSize.x, top));
 			lines.append(sf::Vector2f((firstCol + x) * m_gridSize.x, bot));
 		}
-
 
 		// horizontal lines
 		for (int y{ 0 }; y <= nRows; ++y)
@@ -311,7 +304,6 @@ void Scene_Play::sRender()
 			lines.append(sf::Vertex(sf::Vector2f(left, ROW0 - (lastRow - y) * m_gridSize.y)));
 			lines.append(sf::Vertex(sf::Vector2f(right, ROW0 - (lastRow - y) * m_gridSize.y)));
 		}
-
 
 		// grid coordinates
 		// (firstCol, lastRow) is the bottom left corner of the view 
@@ -325,7 +317,6 @@ void Scene_Play::sRender()
 				m_game->window().draw(gridText);
 			}
 		}
-
 
 		m_game->window().draw(lines);
 	}
@@ -536,5 +527,28 @@ void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
 		bullet->addComponent<CLifespan>(50);
 		bullet->getComponent<CTransform>().vel.x = 10.f * (e->getComponent<CState>().test(CState::isFacingLeft) ? -1 : 1);
 		bullet->getComponent<CTransform>().vel.y = 0.f;
+	}
+}
+
+void Scene_Play::sRemoveEntitiesOutOfGame()
+{
+	auto battleField = getViewBounds();
+	battleField.top -= 300.f;
+	battleField.height += 300.f;
+
+	float buffer = 100.f;
+
+	for (auto e : m_entityManager.getEntities()) {
+		if (e->hasComponent<CTransform>()) {
+			auto pos = e->getComponent<CTransform>().pos;
+
+			if (pos.x < (battleField.left - buffer) ||
+				pos.x >(battleField.left + battleField.width + buffer) ||
+				pos.y < (battleField.top - buffer) ||
+				pos.y >(battleField.top + battleField.height + buffer)) {
+
+				e->destroy();
+			}
+		}
 	}
 }
