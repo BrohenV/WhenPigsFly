@@ -14,7 +14,7 @@ D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Options.cpp(96,81): war
   Scene_Sum.cpp
 D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Sum.cpp(61,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
   Scene_play.cpp
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(283,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(284,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(316,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(317,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating Code...
   sfml.vcxproj -> D:\Final Game Project\WhenPigsFly\WhenPigsFly\x64\Debug\sfml.exe

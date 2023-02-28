@@ -20,6 +20,7 @@ public:
 
 	void update() override;
 
+
 	void sRender() override;
 	void sDoAction(const Action& action) override;
 	

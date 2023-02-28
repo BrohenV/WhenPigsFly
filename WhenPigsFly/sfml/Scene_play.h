@@ -29,7 +29,9 @@ protected:
 	void	init(const std::string& levelPath);
 	void	registerActions();
 	void	onEnd() override;
-
+	float                           m_scrollSpeed{2};
+	sf::Time                dt;
+	void checkPlayerState();
 
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
@@ -40,7 +42,7 @@ public:
 	sf::FloatRect getViewBounds();
 	void sRender() override;
 	void sDoAction(const Action& action) override;
-
+	void checkIfPlayerInBounds();
 	void sMovement();
 	void sAnimation();
 	void sLifespan();

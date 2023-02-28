@@ -47,14 +47,48 @@ void Scene_Play::registerActions()
 void Scene_Play::update()
 {
 	m_entityManager.update();
+	
 
 	// TODO pause function
 	if (!m_isPaused) {
+		sf::View view = m_game->window().getView();
+		std::cout << view.getCenter().x;
+		view.setCenter(view.getCenter().x + m_scrollSpeed, m_game->window().getSize().y - view.getCenter().y);
+		m_game->window().setView(view);
 		sMovement();
 		sLifespan();
 		sCollision();
 		sAnimation();
 		playerCheckState();
+	}
+}
+
+void Scene_Play::checkIfPlayerInBounds()
+{
+
+}
+
+void Scene_Play::checkPlayerState() {
+	if (m_player->hasComponent<CState>()) {
+
+		//auto xVel = m_player->getComponent<CTransform>().vel.x;
+		//std::string newState = "ground";
+		//if (xVel < -0.2f) newState = "flapUp";
+		//if (xVel > 0.2f) newState = "flapDown";
+
+		//auto& state = m_player->getComponent<CState>().state;
+		//if (state != "dead") {
+		//	auto& state = m_player->getComponent<CState>().state;
+		//	if (newState != state) { // only if the state has changed, change the animation
+		//		state = newState;
+		//		if (state == "ground")
+		//			m_player->addComponent<CAnimation>(m_game->assets().getAnimation("TO BE IMPLEMENTED"));
+		//		if (state == "flapUp")
+		//			m_player->addComponent<CAnimation>(m_game->assets().getAnimation("TO BE IMPLEMENTED"));
+		//		if (state == "flapDown")
+		//			m_player->addComponent<CAnimation>(m_game->assets().getAnimation("TO BE IMPLEMENTED"));
+		//	}
+		//}
 	}
 }
 
@@ -223,8 +257,7 @@ void Scene_Play::sRender()
 	auto& pPos = m_player->getComponent<CTransform>().pos;
 	float centerX = std::max(m_game->window().getSize().x / 2.f, pPos.x);
 	sf::View view = m_game->window().getView();
-	view.setCenter(centerX, m_game->window().getSize().y - view.getCenter().y);
-	m_game->window().setView(view);
+	
 
 	// draw all entities
 	if (m_drawTextures)
@@ -325,6 +358,7 @@ void Scene_Play::sRender()
 		sf::Text paused("PAUSED", m_game->assets().getFont("Arial"), 128);
 		centerOrigin(paused);
 		auto bounds = getViewBounds();
+		// FIX PAUSED POSITION
 		paused.setPosition(m_game->window().getSize().x / 2.f - 6 / 2, 20);
 		m_game->window().draw(paused);
 	}
