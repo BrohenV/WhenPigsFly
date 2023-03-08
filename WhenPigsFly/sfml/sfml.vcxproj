@@ -147,6 +147,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene_Audio.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="Scene_play.cpp" />
     <ClCompile Include="Scene_Sum.cpp" />
     <ClCompile Include="sfml.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
@@ -169,6 +171,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene_Audio.h" />
@@ -178,6 +181,7 @@
     <ClInclude Include="Scene_Options.h" />
     <ClInclude Include="Scene_play.h" />
     <ClInclude Include="Scene_Sum.h" />
+    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>

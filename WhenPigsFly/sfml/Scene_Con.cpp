@@ -27,7 +27,7 @@ void Scene_Con::init()
 	m_menuStrings.push_back("P = Pause");
 	m_menuStrings.push_back("Esc = Go back or Quit");
 
-	m_menuText.setFont(m_game->assets().getFont("Arial"));
+	m_menuText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	const size_t CHAR_SIZE{ 64 };
 	m_menuText.setCharacterSize(CHAR_SIZE);

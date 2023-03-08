@@ -20,12 +20,11 @@ void Scene_Sum::init()
 	registerAction(sf::Keyboard::Escape, "QUIT");
 
 	m_title = "Summary";
-	m_menuStrings.push_back("TODO Insert Summary");
+	m_menuStrings.push_back("When Pigs Fly is a high-flying adventure as you race to freedom.");
 
+	m_menuText.setFont(m_game->assets().getFont("ShantellSans"));
 
-	m_menuText.setFont(m_game->assets().getFont("Arial"));
-
-	const size_t CHAR_SIZE{ 64 };
+	const size_t CHAR_SIZE{ 32 };
 	m_menuText.setCharacterSize(CHAR_SIZE);
 }
 

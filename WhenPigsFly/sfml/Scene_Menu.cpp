@@ -34,7 +34,7 @@ void Scene_Menu::init()
 	m_levelPaths.push_back("OPTIONS");
 	m_levelPaths.push_back("QUIT");
 
-	m_menuText.setFont(m_game->assets().getFont("Arial"));
+	m_menuText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	const size_t CHAR_SIZE{ 64 };
 	m_menuText.setCharacterSize(CHAR_SIZE);
@@ -61,7 +61,7 @@ void Scene_Menu::sRender()
 	static const sf::Color backgroundColor(100, 100, 255);
 
 	sf::Text footer("Esc to go back / Arrow keys to navigate",
-		m_game->assets().getFont("Arial"), 20);
+		m_game->assets().getFont("ShantellSans"), 20);
 	footer.setFillColor(normalColor);
 	footer.setPosition(32, 700);
 

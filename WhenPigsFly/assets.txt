@@ -1,12 +1,14 @@
-Window 1280 720 60 0
+#Fonts
 Font Arial 		../assets/fonts/arial.ttf  
 Font Mario 		../assets/fonts/arial.ttf  
 Font Megaman 		../assets/fonts/megaman.ttf  
+Font ShantellSans	../assets/fonts/ShantellSans-Regular.ttf
 
+#Pig
+Texture TexStand 	../assets/pig/stand.png
+Texture TexAir 		../assets/pig/jump.png
 
-Texture TexStand 	../assets/mario/stand.png
 Texture TexRun      ../assets/mario/MarioRun.png
-Texture TexAir 		../assets/mario/jump.png
 Texture TexBuster 	../assets/megaman/buster.png
 Texture TexExplode 	../assets/misc/explosion.png
 Texture TexCoin 	../assets/misc/coinspin.png
@@ -26,13 +28,15 @@ Texture TexPoleTop 	../assets/mario/flagtop.png
 Texture TexFlag 	../assets/mario/flag.png
 
 # City Textures
-#Texture TexTallBuilding
-#Texture TexSmallBuilding
-#Texture TexTrafficLight
+Texture TexBlueBuilding ../assets/city/BlueBuilding.png
+Texture TexGreenBuilding ../assets/city/GreenBuilding.png
+Texture TexRedBuilding ../assets/city/RedBuilding.png
+Texture TexClouds1	../assets/city/Clouds1.png
+Texture TexClouds2	../assets/city/Clouds2.png
 #Texture TexCar
-#Texture TexButcherShop
+Texture TexButcherShop ../assets/city/ButcherShop.png
 
-# Forest Textures
+#Forest Textures
 #Texture TexTree
 #Texture TexBranch
 #Texture TexNest
@@ -57,3 +61,9 @@ Animation CloudSmall	TexCloudS	1	0
 Animation Buster		TexBuster	1	0
 Animation Explosion		TexExplode	16 	4
 Animation Coin			TexCoin		13	2
+Animation BlueBuilding  	TexBlueBuilding 	1 0
+Animation GreenBuilding  	TexGreenBuilding 	1 0
+Animation RedBuilding  		TexRedBuilding 		1 0
+Animation ButcherShop 		TexButcherShop 		1 0
+Animation Clouds1 		TexClouds1 		1 0
+Animation Clouds2 		TexClouds2		1 0

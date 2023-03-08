@@ -24,7 +24,7 @@ void Scene_Credits::init()
 	m_menuStrings.push_back("Thanks to Trevor Cormier for some art and assets");
 	m_menuStrings.push_back("Thanks to Anoop Singh for the music and audio");
 
-	m_menuText.setFont(m_game->assets().getFont("Arial"));
+	m_menuText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	const size_t CHAR_SIZE{ 64 };
 	m_menuText.setCharacterSize(CHAR_SIZE);

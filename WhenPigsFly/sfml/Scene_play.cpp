@@ -5,12 +5,14 @@
 #include "Physics.h"
 #include <string>
 #include "Utilities.h"
+#include "MusicPlayer.h"
 
 Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 	: Scene(gameEngine)
 	, m_levelPath(levelPath)
 {
 	init(m_levelPath);
+	MusicPlayer::getInstance().play("gameTheme");
 }
 
 void Scene_Play::init(const std::string& levelPath)
@@ -18,9 +20,10 @@ void Scene_Play::init(const std::string& levelPath)
 	registerActions();
 
 	m_gridText.setCharacterSize(12);
-	m_gridText.setFont(m_game->assets().getFont("Arial"));
+	m_gridText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	loadLevel(levelPath);
+	
 }
 
 void Scene_Play::registerActions()
@@ -43,7 +46,6 @@ void Scene_Play::registerActions()
 	registerAction(sf::Keyboard::Space, "SHOOT");
 }
 
-
 void Scene_Play::update()
 {
 	m_entityManager.update();
@@ -52,7 +54,7 @@ void Scene_Play::update()
 	// TODO pause function
 	if (!m_isPaused) {
 		sf::View view = m_game->window().getView();
-		std::cout << view.getCenter().x;
+		//std::cout << view.getCenter().x;
 		view.setCenter(view.getCenter().x + m_scrollSpeed, m_game->window().getSize().y - view.getCenter().y);
 		m_game->window().setView(view);
 		sMovement();
@@ -63,9 +65,26 @@ void Scene_Play::update()
 	}
 }
 
-void Scene_Play::checkIfPlayerInBounds()
-{
+void Scene_Play::checkIfPlayerInBounds() {
+	/*auto vb = getViewBounds();
+	bool inBounds = true;
 
+	auto& pos = m_player->getComponent<CTransform>().pos;
+	auto cr = m_player->getComponent<CCollision>().radius;
+	sf::Vector2f minMax;
+	
+	if (vb.left + cr > pos.x || 
+		vb.left + vb.width - cr < pos.x || 
+		vb.top + cr > pos.y ||    
+		vb.top + vb.height - cr < pos.y) 
+	{
+		inBounds = false;
+	} 
+
+
+	if (!inBounds) {
+
+	}*/
 }
 
 void Scene_Play::checkPlayerState() {
@@ -243,7 +262,6 @@ void Scene_Play::sCollision()
 	}
 }
 
-
 void Scene_Play::sRender()
 {
 
@@ -302,7 +320,7 @@ void Scene_Play::sRender()
 	// draw grid
 	sf::VertexArray lines(sf::Lines);
 	sf::Text gridText;
-	gridText.setFont(m_game->assets().getFont("Arial"));
+	gridText.setFont(m_game->assets().getFont("ShantellSans"));
 	gridText.setCharacterSize(10);
 
 	if (m_drawGrid)
@@ -355,11 +373,11 @@ void Scene_Play::sRender()
 	}
 
 	if (m_isPaused) {
-		sf::Text paused("PAUSED", m_game->assets().getFont("Arial"), 128);
+		sf::Text paused("PAUSED", m_game->assets().getFont("ShantellSans"), 128);
 		centerOrigin(paused);
-		auto bounds = getViewBounds();
+		auto center = m_game->window().getView().getCenter();
 		// FIX PAUSED POSITION
-		paused.setPosition(m_game->window().getSize().x / 2.f - 6 / 2, 20);
+		paused.setPosition(center);
 		m_game->window().draw(paused);
 	}
 
@@ -410,7 +428,6 @@ void Scene_Play::sDoAction(const Action& action)
 	}
 }
 
-
 void Scene_Play::sAnimation()
 {
 
@@ -427,7 +444,6 @@ void Scene_Play::sAnimation()
 		}
 	}
 }
-
 
 void Scene_Play::onEnd()
 {
@@ -534,7 +550,6 @@ void Scene_Play::loadFromFile(const std::string& path)
 		confFile >> token;
 	}
 }
-
 
 void Scene_Play::spawnPlayer()
 {

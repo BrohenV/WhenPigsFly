@@ -16,7 +16,7 @@ void GameEngine::init(const std::string& path)
 {
 	m_assets.loadFromFile(path);
 
-	m_window.create(sf::VideoMode(1280, 768), "Not Mario");
+	m_window.create(sf::VideoMode(1280, 768), "When Pigs Fly!");
 	//m_window.setFramerateLimit(60);
 
 	changeScene("MENU", std::make_shared<Scene_Menu>(this));

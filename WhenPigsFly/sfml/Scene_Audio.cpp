@@ -27,7 +27,7 @@ void Scene_Audio::init()
 	m_title = "Audio";
 	m_menuStrings.push_back("TODO Insert Audio Prompts");
 
-	m_menuText.setFont(m_game->assets().getFont("Arial"));
+	m_menuText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	const size_t CHAR_SIZE{ 64 };
 	m_menuText.setCharacterSize(CHAR_SIZE);
