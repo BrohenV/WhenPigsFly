@@ -4,6 +4,9 @@ Font Mario 		../assets/fonts/arial.ttf
 Font Megaman 		../assets/fonts/megaman.ttf  
 Font ShantellSans	../assets/fonts/ShantellSans-Regular.ttf
 
+#SOUNDS
+Sound Flap 		../assets/Sound/WING-BEAT.wav
+
 #Pig
 Texture TexStand 	../assets/pig/stand.png
 Texture TexAir 		../assets/pig/jump.png

@@ -2,6 +2,7 @@
 #include "Scene_Options.h"
 #include "Scene_play.h"
 #include <memory>
+#include "MusicPlayer.h"
 
 void Scene_Menu::onEnd()
 {
@@ -12,6 +13,7 @@ Scene_Menu::Scene_Menu(GameEngine* gameEngine)
 	: Scene(gameEngine)
 {
 	init();
+	MusicPlayer::getInstance().play("menuTheme");
 }
 
 

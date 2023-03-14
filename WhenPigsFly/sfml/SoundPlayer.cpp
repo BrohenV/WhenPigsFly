@@ -34,10 +34,10 @@ void SoundPlayer::play(String effect) {
 }
 
 
-void SoundPlayer::play(String effect, sf::Vector2f position) {
+void SoundPlayer::play(String effect, sf::Vector2f position, float volume) {
     m_sounds.push_back(sf::Sound());
     sf::Sound& sound = m_sounds.back();
-
+    sound.setVolume(volume);
     sound.setBuffer(*m_soundBuffers[effect]);
     sound.setPosition(position.x, -position.y, 0.f);
     sound.setAttenuation(Attenuation);

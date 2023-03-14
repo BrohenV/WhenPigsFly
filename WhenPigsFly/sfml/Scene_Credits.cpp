@@ -26,7 +26,7 @@ void Scene_Credits::init()
 
 	m_menuText.setFont(m_game->assets().getFont("ShantellSans"));
 
-	const size_t CHAR_SIZE{ 64 };
+	const size_t CHAR_SIZE{ 48 };
 	m_menuText.setCharacterSize(CHAR_SIZE);
 }
 

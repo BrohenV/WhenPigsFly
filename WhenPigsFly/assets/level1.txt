@@ -1,5 +1,7 @@
 # This is the level1.txt file that should display the world
 
+Sound Flap 		../assets/Sound/WING-BEAT.wav
+
 Dec ButcherShop		1	1
 Dec BlueBuilding	6	1
 Dec RedBuilding		10	1
@@ -74,9 +76,9 @@ Tile Ground 	9	0
 Tile Ground 	10	0
 Tile Ground 	11	0
 Tile Ground 	12	0
-Tile Ground 	13	0
-Tile Ground 	14	0
-Tile Ground 	15	0
+Dec Ground 	13	0
+Dec Ground 	14	0
+Dec Ground 	15	0
 Tile Ground 	16	0
 Tile Ground 	17	0
 Tile Ground 	18	0

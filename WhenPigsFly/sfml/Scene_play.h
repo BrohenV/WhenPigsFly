@@ -32,6 +32,8 @@ protected:
 	float                           m_scrollSpeed{2};
 	sf::Time                dt;
 	void checkPlayerState();
+	sf::SoundBuffer buffer;
+	std::map<std::string, std::string>sfxMap;
 
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
@@ -61,7 +63,7 @@ public:
 	void spawnPlayer();
 	void spawnBullet(std::shared_ptr<Entity>);
 
-	void sRemoveEntitiesOutOfGame();
+	void killOutOfBounds();
 
 	 
 	

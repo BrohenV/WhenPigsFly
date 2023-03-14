@@ -6,6 +6,7 @@
 #include <string>
 #include "Utilities.h"
 #include "MusicPlayer.h"
+#include "SoundPlayer.h"
 
 Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 	: Scene(gameEngine)
@@ -62,30 +63,11 @@ void Scene_Play::update()
 		sCollision();
 		sAnimation();
 		playerCheckState();
+		killOutOfBounds();
 	}
 }
 
-void Scene_Play::checkIfPlayerInBounds() {
-	/*auto vb = getViewBounds();
-	bool inBounds = true;
 
-	auto& pos = m_player->getComponent<CTransform>().pos;
-	auto cr = m_player->getComponent<CCollision>().radius;
-	sf::Vector2f minMax;
-	
-	if (vb.left + cr > pos.x || 
-		vb.left + vb.width - cr < pos.x || 
-		vb.top + cr > pos.y ||    
-		vb.top + vb.height - cr < pos.y) 
-	{
-		inBounds = false;
-	} 
-
-
-	if (!inBounds) {
-
-	}*/
-}
 
 void Scene_Play::checkPlayerState() {
 	if (m_player->hasComponent<CState>()) {
@@ -136,11 +118,17 @@ void Scene_Play::sMovement()
 		m_player->getComponent<CInput>().up = false;
 		pt.vel.y = -m_playerConfig.JUMP + 5;
 	}
-
+	
+	pt.vel.x = pt.vel.x * m_playerConfig.SPEED;
 
 	// gravity
-	pt.vel.y += m_playerConfig.GRAVITY;
-	pt.vel.x = pt.vel.x * m_playerConfig.SPEED;
+	for (auto e : m_entityManager.getEntities())
+	{
+		if (e->hasComponent<CGravity>()) {
+			auto& tx = e->getComponent<CTransform>();
+			tx.vel.y += e->getComponent<CGravity>().g;
+		}
+	}
 
 	// facing direction
 	if (pt.vel.x < -0.1)
@@ -386,10 +374,14 @@ void Scene_Play::sRender()
 
 void Scene_Play::sDoAction(const Action& action)
 {
-
+	\
 	// On Key Press
 	if (action.type() == "START")
 	{
+		sf::Vector2f pos = sf::Vector2f(
+			m_player->getComponent<CTransform>().pos.x,
+			m_player->getComponent<CTransform>().pos.y);
+
 		if (action.name() == "TOGGLE_TEXTURE") { m_drawTextures = !m_drawTextures; }
 		else if (action.name() == "TOGGLE_COLLISION") { m_drawCollision = !m_drawCollision; }
 		else if (action.name() == "TOGGLE_GRID") { m_drawGrid = !m_drawGrid; }
@@ -401,10 +393,9 @@ void Scene_Play::sDoAction(const Action& action)
 		else if (action.name() == "RIGHT") { m_player->getComponent<CInput>().right = true; }
 
 		else if (action.name() == "JUMP") {
-			if (m_player->getComponent<CInput>().canJump)
-			{
+			if (m_player->getComponent<CInput>().canJump && m_player->getComponent<CState>().isDead != true) {
 				m_player->getComponent<CInput>().up = true;
-				//m_player->getComponent<CInput>().canJump = false;
+				SoundPlayer::getInstance().play("Flap", pos, 25);
 			}
 		}
 
@@ -500,6 +491,7 @@ void Scene_Play::loadFromFile(const std::string& path)
 	confFile >> token;
 	while (confFile)
 	{
+		confFile >> token;
 		if (token == "Tile")
 		{
 			std::string name;
@@ -535,6 +527,14 @@ void Scene_Play::loadFromFile(const std::string& path)
 				m_playerConfig.GRAVITY >>
 				m_playerConfig.WEAPON;
 		}
+		else if (token == "Sound") {
+			std::string key, path;
+			confFile >> key >> path;
+			//sfxMap[key] = path;
+		
+			SoundPlayer::getInstance().loadBuffer(key, path);
+			//std::cout << "(" << key << "," << path << ")";
+		}
 		else if (token == "#")
 		{
 			; // ignore comments
@@ -546,8 +546,6 @@ void Scene_Play::loadFromFile(const std::string& path)
 		{
 			std::cerr << "Unkown asset type: " << token << std::endl;
 		}
-
-		confFile >> token;
 	}
 }
 
@@ -558,6 +556,7 @@ void Scene_Play::spawnPlayer()
 	m_player->addComponent<CAnimation>(m_game->assets().getAnimation("Run"), true);
 	m_player->addComponent<CTransform>(gridToMidPixel(m_playerConfig.X, m_playerConfig.Y, m_player));
 	m_player->addComponent<CBoundingBox>(Vec2(m_playerConfig.CW, m_playerConfig.CH));
+	m_player->addComponent<CGravity>(m_playerConfig.GRAVITY);
 	m_player->addComponent<CState>();
 
 }
@@ -576,28 +575,44 @@ void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
 		bullet->addComponent<CLifespan>(50);
 		bullet->getComponent<CTransform>().vel.x = 10.f * (e->getComponent<CState>().test(CState::isFacingLeft) ? -1 : 1);
 		bullet->getComponent<CTransform>().vel.y = 0.f;
+		//SoundPlayer::getInstance().play(sfx, pos);
 	}
 }
 
-void Scene_Play::sRemoveEntitiesOutOfGame()
+void Scene_Play::checkIfPlayerInBounds() {
+	/*auto vb = getViewBounds();
+	bool inBounds = true;
+
+	auto& pos = m_player->getComponent<CTransform>().pos;
+	auto cr = m_player->getComponent<CCollision>().radius;
+	sf::Vector2f minMax;
+
+	if (vb.left + cr > pos.x ||
+		vb.left + vb.width - cr < pos.x ||
+		vb.top + cr > pos.y ||
+		vb.top + vb.height - cr < pos.y)
+	{
+		inBounds = false;
+	}
+
+
+	if (!inBounds) {
+
+	}*/
+}
+
+void Scene_Play::killOutOfBounds()
 {
-	auto battleField = getViewBounds();
-	battleField.top -= 300.f;
-	battleField.height += 300.f;
+	float killDepth = 710;
+	auto plrPos = m_player->getComponent<CTransform>().pos;
+	auto view = m_game->window().getView();
 
-	float buffer = 100.f;
-
-	for (auto e : m_entityManager.getEntities()) {
-		if (e->hasComponent<CTransform>()) {
-			auto pos = e->getComponent<CTransform>().pos;
-
-			if (pos.x < (battleField.left - buffer) ||
-				pos.x >(battleField.left + battleField.width + buffer) ||
-				pos.y < (battleField.top - buffer) ||
-				pos.y >(battleField.top + battleField.height + buffer)) {
-
-				e->destroy();
-			}
-		}
+	if (plrPos.x < (view.getCenter().x - (view.getSize().x / 2)) ||
+		plrPos.y < getViewBounds().top ||
+		plrPos.y > killDepth
+		) {
+		m_player->destroy();
+		m_player->getComponent<CState>().isDead = true;
+		//m_game->changeScene<C
 	}
 }
