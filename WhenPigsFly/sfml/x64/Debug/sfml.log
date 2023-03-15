@@ -1,8 +1,4 @@
-﻿  Entity.cpp
-  EntityManager.cpp
-  Physics.cpp
-  Scene_play.cpp
+﻿  Scene_play.cpp
 D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(322,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(323,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
   sfml.vcxproj -> D:\Final Game Project\WhenPigsFly\WhenPigsFly\x64\Debug\sfml.exe

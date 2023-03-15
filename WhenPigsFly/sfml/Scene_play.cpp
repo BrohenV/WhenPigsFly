@@ -612,7 +612,7 @@ void Scene_Play::killOutOfBounds()
 		plrPos.y > killDepth
 		) {
 		m_player->destroy();
-		m_player->getComponent<CState>().isDead = true;
+		m_player = nullptr;
 		//m_game->changeScene<C
 	}
 }
