@@ -7,13 +7,14 @@
 #include "Utilities.h"
 #include "MusicPlayer.h"
 #include "SoundPlayer.h"
+#include "Scene_Menu.h"
 
 Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 	: Scene(gameEngine)
 	, m_levelPath(levelPath)
 {
 	init(m_levelPath);
-	MusicPlayer::getInstance().play("gameTheme");
+	
 }
 
 void Scene_Play::init(const std::string& levelPath)
@@ -24,7 +25,7 @@ void Scene_Play::init(const std::string& levelPath)
 	m_gridText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	loadLevel(levelPath);
-	
+	MusicPlayer::getInstance().play("gameTheme");
 }
 
 void Scene_Play::registerActions()
@@ -64,33 +65,11 @@ void Scene_Play::update()
 		sAnimation();
 		playerCheckState();
 		killOutOfBounds();
+		
 	}
 }
 
-
-
 void Scene_Play::checkPlayerState() {
-	if (m_player->hasComponent<CState>()) {
-
-		//auto xVel = m_player->getComponent<CTransform>().vel.x;
-		//std::string newState = "ground";
-		//if (xVel < -0.2f) newState = "flapUp";
-		//if (xVel > 0.2f) newState = "flapDown";
-
-		//auto& state = m_player->getComponent<CState>().state;
-		//if (state != "dead") {
-		//	auto& state = m_player->getComponent<CState>().state;
-		//	if (newState != state) { // only if the state has changed, change the animation
-		//		state = newState;
-		//		if (state == "ground")
-		//			m_player->addComponent<CAnimation>(m_game->assets().getAnimation("TO BE IMPLEMENTED"));
-		//		if (state == "flapUp")
-		//			m_player->addComponent<CAnimation>(m_game->assets().getAnimation("TO BE IMPLEMENTED"));
-		//		if (state == "flapDown")
-		//			m_player->addComponent<CAnimation>(m_game->assets().getAnimation("TO BE IMPLEMENTED"));
-		//	}
-		//}
-	}
 }
 
 sf::FloatRect Scene_Play::getViewBounds() {
@@ -104,39 +83,48 @@ sf::FloatRect Scene_Play::getViewBounds() {
 
 void Scene_Play::sMovement()
 {
-	// player movement 
-	auto& pt = m_player->getComponent<CTransform>();
-	pt.vel.x = 0.f;
-	if (m_player->getComponent<CInput>().left)
-		pt.vel.x -= 1;
 
-	if (m_player->getComponent<CInput>().right)
-		pt.vel.x += 1;
+	if (m_player->isActive()) {
+		// player movement 
+		auto& pt = m_player->getComponent<CTransform>();
+		pt.vel.x = 0.f;
 
-	if (m_player->getComponent<CInput>().up)
-	{
-		m_player->getComponent<CInput>().up = false;
-		pt.vel.y = -m_playerConfig.JUMP + 5;
+		if (m_player->getComponent<CInput>().left)
+			pt.vel.x -= 1;
+
+		if (m_player->getComponent<CInput>().right)
+			pt.vel.x += 1;
+
+		if (m_player->getComponent<CInput>().up){
+			m_player->getComponent<CInput>().up = false;
+			pt.vel.y = -m_playerConfig.JUMP + 10;
+		}
+
+		pt.vel.x = pt.vel.x * m_playerConfig.SPEED;
+		// facing direction
+		if (pt.vel.x < -0.1)
+			m_player->getComponent<CState>().set(CState::isFacingLeft);
+		if (pt.vel.x > 0.1)
+			m_player->getComponent<CState>().unSet(CState::isFacingLeft);
+
 	}
-	
-	pt.vel.x = pt.vel.x * m_playerConfig.SPEED;
-
 	// gravity
 	for (auto e : m_entityManager.getEntities())
 	{
-		if (e->hasComponent<CGravity>()) {
-			auto& tx = e->getComponent<CTransform>();
-			tx.vel.y += e->getComponent<CGravity>().g;
+		if ((e->getTag() != "player") ||
+			((e->getTag() == "player") && e->isActive())) {
+			if (e->hasComponent<CGravity>()) {
+				auto& tx = e->getComponent<CTransform>();
+				tx.vel.y += e->getComponent<CGravity>().g;
+			}	
+		}
+
+		if (e->getTag() == "butcher") {
+			auto& pt = e->getComponent<CTransform>();
+			pt.pos += pt.vel * dt.asSeconds();
+			//pt.rot += pt.rotVel * dt.asSeconds();
 		}
 	}
-
-	// facing direction
-	if (pt.vel.x < -0.1)
-		m_player->getComponent<CState>().set(CState::isFacingLeft);
-	if (pt.vel.x > 0.1)
-		m_player->getComponent<CState>().unSet(CState::isFacingLeft);
-
-
 
 	// move all entities
 	for (auto e : m_entityManager.getEntities())
@@ -252,7 +240,6 @@ void Scene_Play::sCollision()
 
 void Scene_Play::sRender()
 {
-
 	// background changes if paused
 	static const sf::Color background(100, 100, 255);
 	static const sf::Color pauseBackground(50, 50, 150);
@@ -319,8 +306,8 @@ void Scene_Play::sRender()
 		float bot = top + view.getSize().y;
 
 		// aling grid to grid size
-		int nCols = static_cast<int>(view.getSize().x) / m_gridSize.x;
-		int nRows = static_cast<int>(view.getSize().y) / m_gridSize.y;
+		int nCols = static_cast<int>(view.getSize().x / m_gridSize.x);
+		int nRows = static_cast<int>(view.getSize().y / m_gridSize.y);
 
 
 		// row and col # of bot left
@@ -374,7 +361,6 @@ void Scene_Play::sRender()
 
 void Scene_Play::sDoAction(const Action& action)
 {
-	\
 	// On Key Press
 	if (action.type() == "START")
 	{
@@ -385,7 +371,11 @@ void Scene_Play::sDoAction(const Action& action)
 		if (action.name() == "TOGGLE_TEXTURE") { m_drawTextures = !m_drawTextures; }
 		else if (action.name() == "TOGGLE_COLLISION") { m_drawCollision = !m_drawCollision; }
 		else if (action.name() == "TOGGLE_GRID") { m_drawGrid = !m_drawGrid; }
-		else if (action.name() == "PAUSE") { setPaused(!m_isPaused); }
+		else if (action.name() == "PAUSE") { 
+			setPaused(!m_isPaused);
+			
+
+		}
 		else if (action.name() == "QUIT") { onEnd(); }
 
 		// Player control
@@ -405,8 +395,13 @@ void Scene_Play::sDoAction(const Action& action)
 				spawnBullet(m_player);
 				m_player->getComponent<CInput>().shoot = true;
 				m_player->getComponent<CInput>().canShoot = false;
+				//SoundPlayer::getInstance().play("BaconBomb", pos, 25);
+
+				
 			}
 		}
+
+		//MusicPlayer::getInstance().play("winTheme");
 	}
 
 	// on Key Release 
@@ -449,7 +444,7 @@ void Scene_Play::sDebug()
 {
 }
 
-Vec2 Scene_Play::gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity> entity)
+sf::Vector2f Scene_Play::gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity> entity)
 {
 	// (left, bot) of grix,gidy)
 
@@ -459,20 +454,19 @@ Vec2 Scene_Play::gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity
 	float x = 0.f + gridX * m_gridSize.x;
 	float y = 768.f - gridY * m_gridSize.y;
 
-	Vec2 spriteSize = entity->getComponent<CAnimation>().animation.getSize();
+	sf::Vector2f spriteSize = entity->getComponent<CAnimation>().animation.getSize();
 
-	return Vec2(x + spriteSize.x / 2.f, y - spriteSize.y / 2.f);
+	return sf::Vector2f(x + spriteSize.x / 2.f, y - spriteSize.y / 2.f);
 }
 
 void Scene_Play::loadLevel(const std::string& path)
 {
-
 	m_entityManager = EntityManager(); // get a new entity manager
 
-	// TODO read in level file 
-	loadFromFile(path);
-
+	loadFromFile(path); // TODO read in level file 
 	spawnPlayer();
+	
+
 
 }
 
@@ -515,7 +509,6 @@ void Scene_Play::loadFromFile(const std::string& path)
 		}
 		else if (token == "Player")
 		{
-
 			confFile >>
 				m_playerConfig.X >>
 				m_playerConfig.Y >>
@@ -527,13 +520,21 @@ void Scene_Play::loadFromFile(const std::string& path)
 				m_playerConfig.GRAVITY >>
 				m_playerConfig.WEAPON;
 		}
+		else if (token == "Butcher")
+		{
+			sf::Vector2f pos;
+			confFile >> pos.x >> pos.y;
+			spawnButcher(pos);
+		}
 		else if (token == "Sound") {
+		
 			std::string key, path;
 			confFile >> key >> path;
+			std::cout << key;
 			//sfxMap[key] = path;
-		
+	
 			SoundPlayer::getInstance().loadBuffer(key, path);
-			//std::cout << "(" << key << "," << path << ")";
+			std::cout << "(" << key << "," << path << ")";
 		}
 		else if (token == "#")
 		{
@@ -555,16 +556,35 @@ void Scene_Play::spawnPlayer()
 	m_player = m_entityManager.addEntity("player");
 	m_player->addComponent<CAnimation>(m_game->assets().getAnimation("Run"), true);
 	m_player->addComponent<CTransform>(gridToMidPixel(m_playerConfig.X, m_playerConfig.Y, m_player));
-	m_player->addComponent<CBoundingBox>(Vec2(m_playerConfig.CW, m_playerConfig.CH));
+	m_player->addComponent<CBoundingBox>(sf::Vector2f(m_playerConfig.CW, m_playerConfig.CH));
 	m_player->addComponent<CGravity>(m_playerConfig.GRAVITY);
 	m_player->addComponent<CState>();
 
+	sf::Vector2f pos = sf::Vector2f(
+			m_player->getComponent<CTransform>().pos.x,
+			m_player->getComponent<CTransform>().pos.y);
+	//spawnButcher(pos);
+
+}
+
+void Scene_Play::spawnButcher(sf::Vector2f pos) {
+
+	auto vel = sf::Vector2f(m_butcherSpeed, 0.f);
+	float rotation = 180.f;
+
+	auto butcher = m_entityManager.addEntity("butcher");
+	butcher->addComponent<CTransform>(pos, vel, rotation);
+	butcher->addComponent<CAnimation>(m_game->assets().getAnimation("Buster"), true);//TODO: Add Run
+	butcher->addComponent<CCollision>(20.f);
+	//butcher->addComponent<CKnife>();
 }
 
 void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
 {
-
 	auto tx = e->getComponent<CTransform>();
+	sf::Vector2f pos = sf::Vector2f(
+			m_player->getComponent<CTransform>().pos.x,
+			m_player->getComponent<CTransform>().pos.y);
 
 	if (tx.has)
 	{
@@ -575,30 +595,13 @@ void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
 		bullet->addComponent<CLifespan>(50);
 		bullet->getComponent<CTransform>().vel.x = 10.f * (e->getComponent<CState>().test(CState::isFacingLeft) ? -1 : 1);
 		bullet->getComponent<CTransform>().vel.y = 0.f;
-		//SoundPlayer::getInstance().play(sfx, pos);
+		
+
 	}
 }
 
+
 void Scene_Play::checkIfPlayerInBounds() {
-	/*auto vb = getViewBounds();
-	bool inBounds = true;
-
-	auto& pos = m_player->getComponent<CTransform>().pos;
-	auto cr = m_player->getComponent<CCollision>().radius;
-	sf::Vector2f minMax;
-
-	if (vb.left + cr > pos.x ||
-		vb.left + vb.width - cr < pos.x ||
-		vb.top + cr > pos.y ||
-		vb.top + vb.height - cr < pos.y)
-	{
-		inBounds = false;
-	}
-
-
-	if (!inBounds) {
-
-	}*/
 }
 
 void Scene_Play::killOutOfBounds()
@@ -611,8 +614,17 @@ void Scene_Play::killOutOfBounds()
 		plrPos.y < getViewBounds().top ||
 		plrPos.y > killDepth
 		) {
-		m_player->destroy();
-		m_player = nullptr;
+		m_game->changeScene("MENU", std::make_shared<Scene_Menu>(m_game));
+		//SoundPlayer::getInstance().removeStoppedSounds();
+		//m_player->destroy();
+		//spawnPlayer();
+		//m_player = nullptr;
 		//m_game->changeScene<C
+		MusicPlayer::getInstance().play("loseTheme");
+
 	}
+
+	
 }
+
+

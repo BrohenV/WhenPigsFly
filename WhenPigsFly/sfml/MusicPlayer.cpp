@@ -5,6 +5,8 @@
 MusicPlayer::MusicPlayer() {
     m_filenames["gameTheme"] = "../assets/Music/GAMEPLAY-MUSIC.ogg";
     m_filenames["menuTheme"] = "../assets/Music/MENU-MUSIC.ogg";
+    m_filenames["winTheme"] = "../assets/Music/VICTORY-MUSIC.ogg";
+    m_filenames["loseTheme"] = "../assets/Music/DEATH-MUSIC.ogg";
 
 }
 

@@ -43,6 +43,9 @@ void Assets::loadFromFile(const std::string& path)
         else if (token == "#")
         {
             ; // ignore comments
+            std::string tmp;
+            std::getline(confFile, tmp);
+            std::cout << "# " << tmp << "\n";
         }
         else
         {

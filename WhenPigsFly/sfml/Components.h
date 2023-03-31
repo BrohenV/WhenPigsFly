@@ -17,7 +17,7 @@ struct CAnimation : public Component
 	bool repeat{ false };
 	CAnimation() = default;
 
-	CAnimation(const Animation& animation, bool r)
+	CAnimation(const Animation& animation, bool r = true)
 		:animation(animation), repeat(r) {}
 };
 
@@ -59,11 +59,11 @@ struct CLifespan : public Component
 
 struct CBoundingBox : public Component
 {
-	Vec2 size{0.f, 0.f};
-	Vec2 halfSize{ 0.f, 0.f };
+	sf::Vector2f size{0.f, 0.f};
+	sf::Vector2f halfSize{ 0.f, 0.f };
 
 	CBoundingBox() = default;
-	CBoundingBox(const Vec2& s) : size(s), halfSize(0.5f * s) 
+	CBoundingBox(const sf::Vector2f& s) : size(s), halfSize(0.5f * s)
 	{}
 };
 
@@ -71,18 +71,20 @@ struct CBoundingBox : public Component
 struct CTransform : public Component
 {
 	
-	Vec2	pos			{ 0.f, 0.f };
-	Vec2	prevPos		{ 0.f, 0.f };
-	Vec2	scale		{ 1.f, 1.f };
-	Vec2	vel			{ 0.f, 0.f };
+	sf::Vector2f	pos			{ 0.f, 0.f };
+	sf::Vector2f	prevPos		{ 0.f, 0.f };
+	sf::Vector2f	scale		{ 1.f, 1.f };
+	sf::Vector2f	vel			{ 0.f, 0.f };
 
 	float   angVel{ 0 };
 	float	angle{ 0.f };
 
 	CTransform() = default;
-	CTransform(const Vec2& p) : pos(p)  {}
-	CTransform(const Vec2& p, const Vec2& v, const Vec2& sc, float a) 
+	CTransform(const sf::Vector2f& p) : pos(p)  {}
+	CTransform(const sf::Vector2f& p, const sf::Vector2f& v, const sf::Vector2f& sc, float a)
 		: pos(p), prevPos(p), vel(v), scale(sc), angle(a) {}
+	CTransform(const sf::Vector2f& p, const sf::Vector2f& v, float a)
+		: pos(p), prevPos(p), vel(v), scale{ 1.f, 1.f }, angle{ a } {}
 
 };
 
@@ -122,4 +124,13 @@ struct CState : public Component
 	void set(unsigned int x) { state |= x; }
 	void unSet(unsigned int x) { state &= ~x; }
 
+};
+
+struct CKnife : public Component {
+	bool isFiring{ false };
+	sf::Time countdown{ sf::Time::Zero };
+	int fireRate{ 1 };
+	int spreadLevel{ 1 };
+
+	CKnife() = default;
 };

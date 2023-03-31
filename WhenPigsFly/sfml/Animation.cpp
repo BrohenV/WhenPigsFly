@@ -15,9 +15,13 @@ Animation::Animation(const std::string& name, const sf::Texture& t, size_t frame
 	, m_currentFrame(0)
 	, m_speed(speed)
 {
-	m_size = Vec2(static_cast<float>(t.getSize().x) / frameCount, static_cast<float>(t.getSize().y));
+	m_size = sf::Vector2f(static_cast<float>(t.getSize().x) / frameCount, static_cast<float>(t.getSize().y));
 	m_sprite.setOrigin(m_size.x / 2.f, m_size.y / 2.f);
-	m_sprite.setTextureRect(sf::IntRect(std::floor(m_currentFrame * m_size.x), 0, m_size.x, m_size.y));
+	m_sprite.setTextureRect(sf::IntRect(
+		static_cast<int>( std::floor(m_currentFrame * m_size.x)), 
+		static_cast<int>(0), 
+		static_cast<int>(m_size.x), 
+		static_cast<int>(m_size.y)));
 }
 
 void Animation::update(bool repeat)
@@ -60,7 +64,7 @@ const std::string& Animation::getName() const
 	return m_name;
 }
 
-const Vec2& Animation::getSize() const
+const sf::Vector2f& Animation::getSize() const
 {
 	return m_size;
 }

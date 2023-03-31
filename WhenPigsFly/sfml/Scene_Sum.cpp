@@ -21,6 +21,10 @@ void Scene_Sum::init()
 
 	m_title = "Summary";
 	m_menuStrings.push_back("When Pigs Fly is a high-flying adventure as you race to freedom.");
+	m_menuStrings.push_back("Along the way you jump and pick up powerups to help you on your");
+	m_menuStrings.push_back("journey. You will guide Oinker to move across in a jumping / ");
+	m_menuStrings.push_back("flying motion to the end of the game without touching the ground");
+	m_menuStrings.push_back("or get caught by the butcher.");
 
 	m_menuText.setFont(m_game->assets().getFont("ShantellSans"));
 

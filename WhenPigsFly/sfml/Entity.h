@@ -8,8 +8,8 @@
 // forward declarations
 class EntityManager;
 
-using ComponentTuple = std::tuple< CTransform, CLifespan,
-	CInput, CBoundingBox, CAnimation, CGravity, CState>;
+using ComponentTuple = std::tuple< CTransform, CLifespan, CCollision,
+	CInput, CBoundingBox, CAnimation, CGravity, CState>; //, CKnife > ;
 
 
 class Entity

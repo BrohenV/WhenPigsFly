@@ -62,7 +62,7 @@ void Scene_Audio::sRender()
 	for (size_t i{ 0 }; i < m_menuStrings.size(); ++i)
 	{
 		m_menuText.setFillColor((i == m_menuIndex ? selectedColor : normalColor));
-		m_menuText.setPosition(textwidth / 10, (i + 1) * 96);
+		m_menuText.setPosition(textwidth / 10, (i + 1.f) * 96.f);
 		m_menuText.setString(m_menuStrings.at(i));
 		m_game->window().draw(m_menuText);
 	}

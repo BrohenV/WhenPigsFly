@@ -53,21 +53,24 @@ void Scene_Menu::update()
 void Scene_Menu::sRender()
 {
 
-	sf::View view = m_game->window().getView();
-	view.setCenter(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f);
-	m_game->window().setView(view);
-
 	static const sf::Color selectedColor(255, 255, 255);
 	static const sf::Color normalColor(0, 0, 0);
-
 	static const sf::Color backgroundColor(100, 100, 255);
-
-	sf::Text footer("Esc to go back / Arrow keys to navigate",
-		m_game->assets().getFont("ShantellSans"), 20);
-	footer.setFillColor(normalColor);
-	footer.setPosition(32, 700);
-
 	m_game->window().clear(backgroundColor);
+
+	sf::View view = m_game->window().getView();
+	view.setCenter(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f);
+
+	auto windowSize = m_game->window().getSize();
+	m_game->window().setView(view);
+
+	sf::Sprite bkg = sf::Sprite{};
+	bkg.setTexture(m_game->assets().getTexture("menuBkg"));
+
+	auto bkgPosY = bkg.getLocalBounds().height - windowSize.y;
+	bkg.setOrigin(0.f, bkgPosY);
+	m_game->window().draw(bkg);
+
 
 	m_menuText.setFillColor(normalColor);
 	m_menuText.setString(m_title);
@@ -78,14 +81,19 @@ void Scene_Menu::sRender()
 	for (size_t i{ 0 }; i < m_menuStrings.size(); ++i)
 	{
 		m_menuText.setFillColor((i == m_menuIndex ? selectedColor : normalColor));
-		m_menuText.setPosition(textwidth / 2, 32 + (i + 1) * 96);
+		m_menuText.setPosition(textwidth / 10, (i + 1) * 96);
 		m_menuText.setString(m_menuStrings.at(i));
 		m_game->window().draw(m_menuText);
 	}
 
+	sf::Text footer("Esc to go back / Arrow keys to navigate",
+		m_game->assets().getFont("ShantellSans"), 20);
+	footer.setFillColor(normalColor);
+	footer.setPosition(32, 700);
 	m_game->window().draw(footer);
-	m_game->window().display();
 
+
+	m_game->window().display();
 }
 
 

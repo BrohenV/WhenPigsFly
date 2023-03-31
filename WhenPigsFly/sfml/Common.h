@@ -10,6 +10,4 @@
 #include <sstream>
 #include <algorithm>
 
-#include "Vec2.h"
-
 template <class T> using SPtr = std::shared_ptr < T >;
