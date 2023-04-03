@@ -25,7 +25,7 @@ void Scene_Play::init(const std::string& levelPath)
 	m_gridText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	loadLevel(levelPath);
-	MusicPlayer::getInstance().play("gameTheme");
+	//MusicPlayer::getInstance().play("loseTheme");
 }
 
 void Scene_Play::registerActions()
@@ -385,7 +385,7 @@ void Scene_Play::sDoAction(const Action& action)
 		else if (action.name() == "JUMP") {
 			if (m_player->getComponent<CInput>().canJump && m_player->getComponent<CState>().isDead != true) {
 				m_player->getComponent<CInput>().up = true;
-				SoundPlayer::getInstance().play("Flap", pos, 25);
+				SoundPlayer::getInstance().play("WingsUp", pos, 25);
 			}
 		}
 
@@ -559,11 +559,6 @@ void Scene_Play::spawnPlayer()
 	m_player->addComponent<CBoundingBox>(sf::Vector2f(m_playerConfig.CW, m_playerConfig.CH));
 	m_player->addComponent<CGravity>(m_playerConfig.GRAVITY);
 	m_player->addComponent<CState>();
-
-	sf::Vector2f pos = sf::Vector2f(
-			m_player->getComponent<CTransform>().pos.x,
-			m_player->getComponent<CTransform>().pos.y);
-	//spawnButcher(pos);
 
 }
 

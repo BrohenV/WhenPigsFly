@@ -1,29 +1,26 @@
+#
+# This file displays the Textures / Animations / Fonts
+#
+
 # Fonts
-Font Arial 		../assets/fonts/arial.ttf  
-Font Mario 		../assets/fonts/arial.ttf  
-Font Megaman 		../assets/fonts/megaman.ttf  
-Font ShantellSans	../assets/fonts/ShantellSans-Regular.ttf
+Font Arial 			../assets/fonts/arial.ttf  
+Font Mario 			../assets/fonts/arial.ttf  
+Font Megaman 			../assets/fonts/megaman.ttf  
+Font ShantellSans		../assets/fonts/ShantellSans-Regular.ttf
 
-Texture menuBkg		../assets/pig/TitleScreen.png
-Texture End		../assets/pig/end.png
+Texture menuBkg			../assets/pig/TitleScreen.png
+Texture End			../assets/pig/end.png
 
-# SOUNDS
-Sound Flap 			../assets/Sound/WING-BEAT.wav
-# Sound BExplosion	../assets/Sound/EXPLOSION.wav
-# Sound Stab 		../assets/Sound/STAB.wav
-# Sound BaconBomb 	../assets/Sound/BACON-BOMB.wav
-# Sound KnifeThrow 	../assets/Sound/KNIFE-THROW.wav
-# Sound WingsUp 	../assets/Sound/WINGS-UP.wav
-# Sound QuitnTime 	../assets/Sound/QUITN-TIME.wav
+
 
 # Pig
-Texture TexStand 	../assets/pig/stand.png
-Texture TexAir 		../assets/pig/jump.png
-Texture TexRun      	../assets/pig/run.png
+Texture TexStand 		../assets/pig/stand.png
+Texture TexAir 			../assets/pig/jump.png
+Texture TexRun      		../assets/pig/run.png
 
-Texture TexBacon 	../assets/pig/bacon.png
-Texture TexExplode 	../assets/misc/explosion.png
-Texture TexCoin 	../assets/misc/coinspin.png
+Texture TexBacon 		../assets/pig/bacon.png
+Texture TexExplode 		../assets/misc/explosion.png
+Texture TexCoin 		../assets/misc/coinspin.png
 
 # City Textures
 Texture TexBlueBuilding		../assets/city/BlueBuilding.png
@@ -35,7 +32,10 @@ Texture TexGround 		../assets/city/ground.png
 Texture TexButcherShop		../assets/city/ButcherShop.png
 
 # Forest Textures
-# Texture TexTree
+Texture TexGround2 		../assets/forest/ground2.png
+Texture TexTree1		../assets/forest/tree1.png
+Texture TexTree2		../assets/forest/tree2.png
+Texture TexTree3		../assets/forest/tree3.png
 # Texture TexBranch
 # Texture TexNest
 # Texture TexFallenTree
@@ -45,19 +45,23 @@ Texture TexButcherShop		../assets/city/ButcherShop.png
 # Texture TexSun
 # Texture TexHeatWave
 
-Animation Stand 			TexStand 	1 	0 
-Animation Run 				TexRun 		5 	5
-Animation Air				TexAir		1	0
-Animation Ground			TexGround	1	0
-Animation BlueBuilding  	TexBlueBuilding 	1 0
-Animation GreenBuilding  	TexGreenBuilding 	1 0
-Animation RedBuilding  		TexRedBuilding 		1 0
-Animation ButcherShop 		TexButcherShop 		1 0
-Animation Clouds1 			TexClouds1 		1 0
-Animation Clouds2 			TexClouds2		1 0
-# Animation menuBkg			TexMenuBkg 1 0
-Animation End 			End 	1 	0 
-Animation Buster		TexBacon	1	0
-Animation Explosion		TexExplode	16 	4
-Animation Coin			TexCoin		13	2
+Animation Stand 		TexStand 		1 	0 
+Animation Run 			TexRun 			5 	5
+Animation Air			TexAir			1	0
+Animation Ground		TexGround		1	0
+Animation Ground2		TexGround2 		1	0
+Animation Tree1			TexTree1		1	0
+Animation Tree2			TexTree2		1	0
+Animation Tree3			TexTree3		1	0
+Animation BlueBuilding  	TexBlueBuilding 	1	0
+Animation GreenBuilding  	TexGreenBuilding 	1 	0
+Animation RedBuilding  		TexRedBuilding 		1 	0
+Animation ButcherShop 		TexButcherShop 		1 	0
+Animation Clouds1 		TexClouds1 		1 	0
+Animation Clouds2 		TexClouds2		1 	0
+# Animation menuBkg		TexMenuBkg 		1 	0
+Animation End 			End 			1 	0 
+Animation Buster		TexBacon		1	0
+Animation Explosion		TexExplode		16 	4
+Animation Coin			TexCoin			13	2
 # End of Config

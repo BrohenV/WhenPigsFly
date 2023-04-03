@@ -1,17 +1,2 @@
-﻿  GameEngine.cpp
-  Scene_Audio.cpp
-  Scene_Con.cpp
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Con.cpp(65,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-  Scene_Credits.cpp
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Credits.cpp(62,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-  Scene_Menu.cpp
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Menu.cpp(84,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Menu.cpp(106,81): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Scene_Options.cpp
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Options.cpp(79,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Options.cpp(96,81): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Scene_Sum.cpp
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_Sum.cpp(64,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-  Scene_play.cpp
-  Generating Code...
+﻿  Scene_play.cpp
   sfml.vcxproj -> D:\Final Game Project\WhenPigsFly\WhenPigsFly\x64\Debug\sfml.exe
