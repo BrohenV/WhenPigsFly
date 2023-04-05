@@ -18,6 +18,7 @@ Texture Pickup1			../assets/pickups/pickup1.png
 Texture TexStand 		../assets/pig/stand.png
 Texture TexAir 			../assets/pig/jump.png
 Texture TexRun      		../assets/pig/run.png
+Texture TexButcher		../assets/pig/butcher.png
 
 Texture TexBacon 		../assets/pig/bacon.png
 Texture TexExplode 		../assets/misc/explosion.png
@@ -37,15 +38,17 @@ Texture TexGround2 		../assets/forest/ground2.png
 Texture TexTree1		../assets/forest/tree1.png
 Texture TexTree2		../assets/forest/tree2.png
 Texture TexTree3		../assets/forest/tree3.png
-# Texture TexBranch
-# Texture TexNest
-# Texture TexFallenTree
+Texture TexConP			../assets/forest/ConnectionPoint.png
+Texture	TexEnterForest		../assets/forest/enteringForest.png
+Texture TexCloud1			../assets/forest/cloud1.png
+Texture TexCloud2			../assets/forest/cloud2.png
 
 # Canyon Textures
 # Texture TexHole
 # Texture TexSun
 # Texture TexHeatWave
 
+Animation Butcher		TexButcher		1	0
 Animation Stand 		TexStand 		1 	0 
 Animation Run 			TexRun 			5 	5
 Animation Air			TexAir			1	0
@@ -54,6 +57,10 @@ Animation Ground2		TexGround2 		1	0
 Animation Tree1			TexTree1		1	0
 Animation Tree2			TexTree2		1	0
 Animation Tree3			TexTree3		1	0
+Animation Cloud1		TexCloud1		1	0
+Animation Cloud2		TexCloud2		1	0
+Animation ConP			TexConP			1	0
+Animation EnterForest		TexEnterForest		1	0
 Animation BlueBuilding  	TexBlueBuilding 	1	0
 Animation GreenBuilding  	TexGreenBuilding 	1 	0
 Animation RedBuilding  		TexRedBuilding 		1 	0

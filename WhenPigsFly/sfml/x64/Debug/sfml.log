@@ -1,2 +1,6 @@
-﻿  Scene_play.cpp
+﻿  Entity.cpp
+  EntityManager.cpp
+  Physics.cpp
+  Scene_play.cpp
+  Generating Code...
   sfml.vcxproj -> D:\Final Game Project\WhenPigsFly\WhenPigsFly\x64\Debug\sfml.exe

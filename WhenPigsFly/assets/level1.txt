@@ -12,7 +12,7 @@ Sound QuitnTime 	../assets/Sound/QUITN-TIME.wav
 
 #     gX, gY, cW, cH, sX, sY,  sM,  g,   bullet 
 Player 2   2  48  48   5  20  20  0.75  Buster
-Butcher 64  704
+Butcher 64  640
 
 # City Sprites
 Dec ButcherShop		1	1
@@ -217,9 +217,10 @@ Tile Ground	94	0
 Tile Ground	95	0
 Tile Ground	96	0
 Tile Ground	97	0
+Dec  EnterForest 97	8		
 Tile Ground	98	0
 Tile Ground	99	0
-Tile Ground	100	0
+Tile ConP 	100	0
 
 # Forest
 Tile Ground2	101	0
@@ -231,6 +232,7 @@ Dec Tree3	104	1
 Tile Ground2	105	0
 Tile Ground2	106	0
 Tile Ground2	107	0
+Tile Cloud1	107	8
 Dec Tree2	107	1
 Tile Ground2	108	0
 Tile Ground2	109	0
@@ -244,6 +246,7 @@ Tile Ground2	114	0
 Tile Ground2	115	0
 Tile Ground2	116	0
 Dec Tree2	116	1
+Tile Cloud2	116	8
 Tile Ground2	117	0
 Tile Ground2	118	0
 Tile Ground2	119	0
@@ -255,6 +258,7 @@ Dec Tree1	122	1
 Tile Ground2	123	0
 Tile Ground2	124	0
 Tile Ground2	125	0
+Tile Cloud1	125	8
 Dec Tree3	125	1
 Tile Ground2	126	0
 Tile Ground2	127	0
@@ -268,6 +272,7 @@ Tile Ground2	132	0
 Tile Ground2	133	0
 Tile Ground2	134	0
 Dec Tree1	134	1
+Tile Cloud2	134	8
 Tile Ground2	135	0
 Tile Ground2	136	0
 Tile Ground2	137	0
@@ -279,6 +284,7 @@ Dec Tree1	140	1
 Tile Ground2	141	0
 Tile Ground2	142	0
 Tile Ground2	143	0
+Tile Cloud1	143	8
 Dec Tree2	143	1
 Tile Ground2	144	0
 Tile Ground2	145	0
@@ -291,6 +297,7 @@ Tile Ground2	150	0
 Dec Tree3	150	1
 Tile Ground2	151	0
 Tile Ground2	152	0
+Tile Cloud2	152	8
 Tile Ground2	153	0
 Dec Tree1	153	1
 Tile Ground2	154	0
@@ -303,6 +310,7 @@ Tile Ground2	159	0
 Dec Tree2	159	1
 Tile Ground2	160	0
 Tile Ground2	161	0
+Tile Cloud1	161	8
 Tile Ground2	162	0
 Dec Tree3	162	1
 Tile Ground2	163	0
@@ -315,18 +323,20 @@ Tile Ground2	168	0
 Dec Tree3	168	1
 Tile Ground2	169	0
 Tile Ground2	170	0
+Tile Cloud2	170	8
 Tile Ground2	171	0
 Dec Tree2	172	1
 Tile Ground2	172	0
 Tile Ground2	173	0
 Tile Ground2	174	0
-Dec Tree1	174	1
+Dec Tree1	175	1
 Tile Ground2	175	0
 Tile Ground2	176	0
 Tile Ground2	177	0
 Tile Ground2	178	0
 Dec Tree2	178	1
 Tile Ground2	179	0
+Tile Cloud1	179	8
 Tile Ground2	180	0
 Tile Ground2	181	0
 Dec Tree3	181	1
@@ -339,6 +349,7 @@ Tile Ground2	186	0
 Tile Ground2	187	0
 Dec Tree3	187	1
 Tile Ground2	188	0
+Tile Cloud2	188	8
 Tile Ground2	189	0
 Tile Ground2	190	0
 Dec Tree1	190	1
@@ -351,11 +362,16 @@ Tile Ground2	195	0
 Tile Ground2	196	0
 Dec Tree3	196	1
 Tile Ground2	197	0
+Tile Cloud1	197	8
 Tile Ground2	198	0
 Tile Ground2	199	0
 Dec Tree1	199	1
 Tile Ground2	200	0
 Tile Ground2	201	0
-
+Tile Ground2	202	0
+Dec Tree2	202	1
+Tile Ground2	203	0
+Tile Ground2	204	0
+Tile Ground2	205	0
 
 # This is the end of the Level1

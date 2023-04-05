@@ -69,7 +69,7 @@ public:
 	void			loadFromFile(const std::string& filename);
 	void			spawnPlayer();
 	void			spawnBullet(std::shared_ptr<Entity>);
-	void			killOutOfBounds();
+	void			removeOutOfBounds();
 };
 
 

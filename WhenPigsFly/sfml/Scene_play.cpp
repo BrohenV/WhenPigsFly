@@ -25,7 +25,7 @@ void Scene_Play::init(const std::string& levelPath)
 	m_gridText.setFont(m_game->assets().getFont("ShantellSans"));
 
 	loadLevel(levelPath);
-	//MusicPlayer::getInstance().play("loseTheme");
+	MusicPlayer::getInstance().play("gameTheme");
 }
 
 void Scene_Play::registerActions()
@@ -64,7 +64,7 @@ void Scene_Play::update()
 		sCollision();
 		sAnimation();
 		playerCheckState();
-		killOutOfBounds();
+		removeOutOfBounds();
 		
 	}
 }
@@ -385,7 +385,7 @@ void Scene_Play::sDoAction(const Action& action)
 		else if (action.name() == "JUMP") {
 			if (m_player->getComponent<CInput>().canJump && m_player->getComponent<CState>().isDead != true) {
 				m_player->getComponent<CInput>().up = true;
-				SoundPlayer::getInstance().play("WingsUp", pos, 25);
+				SoundPlayer::getInstance().play("Flap", pos, 25);
 			}
 		}
 
@@ -395,7 +395,7 @@ void Scene_Play::sDoAction(const Action& action)
 				spawnBullet(m_player);
 				m_player->getComponent<CInput>().shoot = true;
 				m_player->getComponent<CInput>().canShoot = false;
-				//SoundPlayer::getInstance().play("BaconBomb", pos, 25);
+				SoundPlayer::getInstance().play("BaconBomb", pos, 25);
 
 				
 			}
@@ -565,13 +565,13 @@ void Scene_Play::spawnPlayer()
 void Scene_Play::spawnButcher(sf::Vector2f pos) {
 
 	auto vel = sf::Vector2f(m_butcherSpeed, 0.f);
-	float rotation = 180.f;
+	float rotation = 0.f;
 
 	auto butcher = m_entityManager.addEntity("butcher");
 	butcher->addComponent<CTransform>(pos, vel, rotation);
-	butcher->addComponent<CAnimation>(m_game->assets().getAnimation("Buster"), true);//TODO: Add Run
+	butcher->addComponent<CAnimation>(m_game->assets().getAnimation("Butcher"), true);//TODO: Add Run
 	butcher->addComponent<CCollision>(20.f);
-	//butcher->addComponent<CKnife>();
+	butcher->addComponent<CKnife>();
 }
 
 void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
@@ -587,8 +587,8 @@ void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
 		bullet->addComponent<CAnimation>(m_game->assets().getAnimation(m_playerConfig.WEAPON), true);
 		bullet->addComponent<CTransform>(tx.pos);
 		bullet->addComponent<CBoundingBox>(m_game->assets().getAnimation(m_playerConfig.WEAPON).getSize());
-		bullet->addComponent<CLifespan>(50);
-		bullet->getComponent<CTransform>().vel.x = 10.f * (e->getComponent<CState>().test(CState::isFacingLeft) ? -1 : 1);
+		bullet->addComponent<CLifespan>(225);
+		bullet->getComponent<CTransform>().vel.x = 5.f * (e->getComponent<CState>().test(CState::isFacingLeft) ? -1 : 1);
 		bullet->getComponent<CTransform>().vel.y = 0.f;
 		
 
@@ -599,7 +599,7 @@ void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
 void Scene_Play::checkIfPlayerInBounds() {
 }
 
-void Scene_Play::killOutOfBounds()
+void Scene_Play::removeOutOfBounds()
 {
 	float killDepth = 710;
 	auto plrPos = m_player->getComponent<CTransform>().pos;
