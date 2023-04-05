@@ -6,7 +6,7 @@
 When Pigs Fly is an adventure in which you jump and pick up power-up items to help you on your journey. You will guide Oinker to move across in a jumping/flying motion to the end of the game without touching the ground or get caught by the butcher. The player must keep the pig flying and dodge the buthcers knife from hitting the pig. Along the way you can get power ups to increase your odds of suervival as you traverse a city, a forest, and a canyon in order to escape and earn your freedom.
 
 ## Player Character
-
+![alt text](Sketches/jump.png)
 Oinker is a pig with wings. His expression is a scared and afraid expression due to the imminent fate that awaits him. His body is round and pink like a pigs should be, his wings are white-ish blue as depicted on tv. His powers include flight and bacon breath. The Flying is used to avoid obstacles like the butcher and whatever else gets in your way. 
 
 
