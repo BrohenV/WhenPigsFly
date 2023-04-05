@@ -15,6 +15,13 @@ Oinker is a pig with wings. His expression is a scared and afraid expression due
 The butcher is a man with a big knife. He is constantly chasing you and will not stop until you escape. A smiling expression is on his face due to the imminent feast that awaits him. His body is round and heavy as a typical butcher stereotype should be, he has a hat and apron to tie the whole thing together. His powers include knife throwing. The knife deals a lethal blow and if you get hit by it its game over.
 
 
+## Locations
+
+Throughout the game you with venture through three areas, a city, a forest, and a canyon  
+![City Landscape](Sketches/City.jpg)
+![Forest Landscape](Sketches/Forest.jpg)
+![Canyon Landscape](Sketches/Canyon.jpg)
+
 ## Power-Ups 
 
 - Wings Up - Makes Oinkers jump doubled. This can be usefull but may also hinder you on your journey.  
