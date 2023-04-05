@@ -10,6 +10,7 @@ Font ShantellSans		../assets/fonts/ShantellSans-Regular.ttf
 
 Texture menuBkg			../assets/pig/TitleScreen.png
 Texture End			../assets/pig/end.png
+Texture Pickup1			../assets/pickups/pickup1.png
 
 
 
@@ -64,4 +65,5 @@ Animation End 			End 			1 	0
 Animation Buster		TexBacon		1	0
 Animation Explosion		TexExplode		16 	4
 Animation Coin			TexCoin			13	2
+Animation Pickup1		Pickup1			12	2
 # End of Config
