@@ -65,6 +65,7 @@ void Scene_Play::update()
 		sAnimation();
 		playerCheckState();
 		removeOutOfBounds();
+		checkKnifeCollision();
 		
 	}
 }
@@ -166,6 +167,7 @@ void Scene_Play::playerCheckState()
 			state.unSet(CState::isRunning);
 		}
 	}
+	checkIfDead(m_player);
 }
 
 void Scene_Play::sLifespan()
@@ -386,6 +388,7 @@ void Scene_Play::sDoAction(const Action& action)
 			if (m_player->getComponent<CInput>().canJump && m_player->getComponent<CState>().isDead != true) {
 				m_player->getComponent<CInput>().up = true;
 				SoundPlayer::getInstance().play("Flap", pos, 25);
+				//createKnife(pos);
 			}
 		}
 
@@ -465,8 +468,6 @@ void Scene_Play::loadLevel(const std::string& path)
 
 	loadFromFile(path); // TODO read in level file 
 	spawnPlayer();
-	
-
 
 }
 
@@ -497,6 +498,14 @@ void Scene_Play::loadFromFile(const std::string& path)
 			e->addComponent<CBoundingBox>(m_game->assets().getAnimation(name).getSize());
 			e->addComponent<CTransform>(gridToMidPixel(gx, gy, e));
 		}
+		else if (token == "Butcher")
+		{
+			sf::Vector2f pos;
+			std::string size;
+			confFile >> pos.x >> pos.y >> size;
+			spawnButcher(pos, size);
+			createKnife(pos);
+		}
 		else if (token == "Dec")
 		{
 			std::string name;
@@ -520,12 +529,7 @@ void Scene_Play::loadFromFile(const std::string& path)
 				m_playerConfig.GRAVITY >>
 				m_playerConfig.WEAPON;
 		}
-		else if (token == "Butcher")
-		{
-			sf::Vector2f pos;
-			confFile >> pos.x >> pos.y;
-			spawnButcher(pos);
-		}
+		
 		else if (token == "Sound") {
 		
 			std::string key, path;
@@ -562,16 +566,19 @@ void Scene_Play::spawnPlayer()
 
 }
 
-void Scene_Play::spawnButcher(sf::Vector2f pos) {
+void Scene_Play::spawnButcher(sf::Vector2f pos, std::string size) {
 
 	auto vel = sf::Vector2f(m_butcherSpeed, 0.f);
 	float rotation = 0.f;
 
-	auto butcher = m_entityManager.addEntity("butcher");
-	butcher->addComponent<CTransform>(pos, vel, rotation);
-	butcher->addComponent<CAnimation>(m_game->assets().getAnimation("Butcher"), true);//TODO: Add Run
-	butcher->addComponent<CCollision>(20.f);
-	butcher->addComponent<CKnife>();
+	m_butcher = m_entityManager.addEntity("butcher");
+	m_butcher->addComponent<CTransform>(pos, vel, rotation);
+	m_butcher->addComponent<CAnimation>(m_game->assets().getAnimation("Butcher"), true);//TODO: Add Run
+	m_butcher->addComponent<CCollision>(20.f);
+	m_butcher->addComponent<CKnife>();
+	m_butcherConfig.WEAPON = size;
+	
+	createKnife(pos);
 }
 
 void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
@@ -595,8 +602,57 @@ void Scene_Play::spawnBullet(std::shared_ptr<Entity> e)
 	}
 }
 
+void Scene_Play::createKnife(sf::Vector2f pos) {
+	float speed = 5.f;
+
+	auto knife = m_entityManager.addEntity("knife");
+	knife->addComponent<CTransform>(pos, sf::Vector2f(speed, 0.f));
+	knife->addComponent<CAnimation>(m_game->assets().getAnimation("Stand"));
+	knife->addComponent<CCollision>(3);
+	knife->addComponent<CBoundingBox>(m_game->assets().getAnimation(m_butcherConfig.WEAPON).getSize());
+
+	SoundPlayer::getInstance().play("KnifeThrow", pos);
+}
+
+void Scene_Play::checkKnifeCollision() {
+
+	// Butcher Knives
+	if (m_player->hasComponent<CCollision>()) {
+		auto pPos = m_player->getComponent<CTransform>().pos;
+		auto pCr = m_player->getComponent<CCollision>().radius;
+
+		for (auto knife : m_entityManager.getEntities("knife")) {
+			if (knife->hasComponent<CTransform>() && knife->hasComponent<CCollision>()) {
+				auto bPos = knife->getComponent<CTransform>().pos;
+				auto bCr = knife->getComponent<CCollision>().radius;
+
+				if (dist(pPos, bPos) < (pCr + bCr)) {
+					knife->destroy();
+				
+				}
+			}
+		}
+	}
+}
 
 void Scene_Play::checkIfPlayerInBounds() {
+
+}
+
+void Scene_Play::checkIfDead(std::shared_ptr<Entity> e) {
+
+	// check for planes that need to be destroyed
+	if (e->hasComponent<CState>()) {
+		if (e->getComponent<CState>().isDead) {
+			e->addComponent<CAnimation>(m_game->assets().getAnimation("Explosion"));
+			e->getComponent<CTransform>().vel = sf::Vector2f(0.f, 0.f);
+			//e->addComponent<CState>().state = "dead";
+			//e->removeComponent<CCollision>();
+
+			SoundPlayer::getInstance().play("BaconBomb", e->getComponent<CTransform>().pos);
+
+		}
+	}
 }
 
 void Scene_Play::removeOutOfBounds()
@@ -610,12 +666,14 @@ void Scene_Play::removeOutOfBounds()
 		plrPos.y > killDepth
 		) {
 		m_game->changeScene("MENU", std::make_shared<Scene_Menu>(m_game));
+		MusicPlayer::getInstance().play("loseTheme");
+		m_player->getComponent<CState>().isDead = true;
 		//SoundPlayer::getInstance().removeStoppedSounds();
 		//m_player->destroy();
 		//spawnPlayer();
 		//m_player = nullptr;
 		//m_game->changeScene<C
-		MusicPlayer::getInstance().play("loseTheme");
+		
 
 	}
 

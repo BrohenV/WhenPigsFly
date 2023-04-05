@@ -10,16 +10,16 @@ Sound KnifeThrow 	../assets/Sound/KNIFE-THROW.wav
 Sound WingsUp 		../assets/Sound/WINGS-UP.wav
 Sound QuitnTime 	../assets/Sound/QUITN-TIME.wav
 
-#     gX, gY, cW, cH, sX, sY,  sM,  g,   bullet 
-Player 2   2  48  48   5  20  20  0.75  Buster
-Butcher 64  640
+#     	gX, gY, cW, cH, sX, sY,  sM,  g,   bullet 
+Player 	5   2  	48   48   5  20  20  0.75  Buster
+Butcher 64  640 Buster
 
 # City Sprites
-Dec ButcherShop		1	1
-Dec Pickup1		12 	7
-Tile BlueBuilding	6	1
-Tile RedBuilding	10	1
-Tile GreenBuilding	13	1
+#Dec ButcherShop	4	1
+Tile Pickup1		12 	7
+#Dec RedBuilding	9	1
+Tile BlueBuilding	11	1
+Tile GreenBuilding	14	1
 Tile BlueBuilding	16	1
 Tile GreenBuilding	20	1
 Tile GreenBuilding	22	1

@@ -1,6 +1,12 @@
-﻿  Entity.cpp
-  EntityManager.cpp
-  Physics.cpp
-  Scene_play.cpp
-  Generating Code...
+﻿  Scene_play.cpp
+D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Entity.h(43,36): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(611): message : see reference to function template instantiation 'T &Entity::addComponent<CCollision,int>(int &&)' being compiled
+          with
+          [
+              T=CCollision
+          ]
   sfml.vcxproj -> D:\Final Game Project\WhenPigsFly\WhenPigsFly\x64\Debug\sfml.exe

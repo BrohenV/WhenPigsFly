@@ -18,13 +18,14 @@ class Scene_Play : public Scene
 	struct ButcherConfig
 	{
 		float X{ 0.f }, Y{ 0.f }, CW{ 0.f }, CH{ 0.f };
-		float SPEED{ 0.f }, MAXSPEED{ 0.f }; //JUMP{ 0.f }, GRAVITY{ 0.f };
+		float SPEED{ 0.f }, MAXSPEED{ 0.f }, JUMP{ 0.f }, GRAVITY{ 0.f };
 		std::string WEAPON;
 	};
 
 protected:
 
 	std::shared_ptr<Entity>		m_player;
+	std::shared_ptr<Entity>		m_butcher;
 	std::string					m_levelPath;
 	PlayerConfig				m_playerConfig;
 
@@ -60,7 +61,10 @@ public:
 	void			sLifespan();
 	void			sEnemySpawner();
 	void			sCollision();
-	void			spawnButcher(sf::Vector2f pos);
+	void			spawnButcher(sf::Vector2f pos, std::string size);
+	void            createKnife(sf::Vector2f pos);
+	void			checkKnifeCollision();
+	void			checkIfDead(std::shared_ptr<Entity> e);
 	void			sDebug();
 	void			drawLine();
 	void			playerCheckState();
