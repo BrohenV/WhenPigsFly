@@ -57,7 +57,6 @@ void Scene_Options::sRender()
 
 	static const sf::Color selectedColor(255, 255, 255);
 	static const sf::Color normalColor(0, 0, 0);
-
 	static const sf::Color backgroundColor(100, 100, 255);
 
 	sf::Text footer("Esc to go back / Arrow keys to navigate",

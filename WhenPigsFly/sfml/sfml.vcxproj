@@ -153,10 +153,12 @@
     <ClCompile Include="Scene_Audio.cpp" />
     <ClCompile Include="Scene_Con.cpp" />
     <ClCompile Include="Scene_Credits.cpp" />
+    <ClCompile Include="Scene_Lose.cpp" />
     <ClCompile Include="Scene_Menu.cpp" />
     <ClCompile Include="Scene_Options.cpp" />
     <ClCompile Include="Scene_play.cpp" />
     <ClCompile Include="Scene_Sum.cpp" />
+    <ClCompile Include="Scene_Win.cpp" />
     <ClCompile Include="sfml.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="Utilities.cpp" />
@@ -176,10 +178,12 @@
     <ClInclude Include="Scene_Audio.h" />
     <ClInclude Include="Scene_Con.h" />
     <ClInclude Include="Scene_Credits.h" />
+    <ClInclude Include="Scene_Lose.h" />
     <ClInclude Include="Scene_Menu.h" />
     <ClInclude Include="Scene_Options.h" />
     <ClInclude Include="Scene_play.h" />
     <ClInclude Include="Scene_Sum.h" />
+    <ClInclude Include="Scene_Win.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>

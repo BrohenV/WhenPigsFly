@@ -8,18 +8,17 @@ Font Mario 			../assets/fonts/arial.ttf
 Font Megaman 			../assets/fonts/megaman.ttf  
 Font ShantellSans		../assets/fonts/ShantellSans-Regular.ttf
 
-Texture menuBkg			../assets/pig/TitleScreen.png
+Texture menuBkg			../assets/Menu/TitleScreen.png
+Texture winBkg			../assets/Menu/WinScreen.png
+Texture loseBkg			../assets/Menu/GameOverScreen.png
 Texture End			../assets/pig/end.png
 Texture Pickup1			../assets/pickups/pickup1.png
-
-
 
 # Pig
 Texture TexStand 		../assets/pig/stand.png
 Texture TexAir 			../assets/pig/jump.png
 Texture TexRun      		../assets/pig/run.png
 Texture TexButcher		../assets/pig/butcher.png
-
 Texture TexBacon 		../assets/pig/bacon.png
 Texture TexExplode 		../assets/misc/explosion.png
 Texture TexCoin 		../assets/misc/coinspin.png
@@ -44,7 +43,10 @@ Texture TexCloud1			../assets/forest/cloud1.png
 Texture TexCloud2			../assets/forest/cloud2.png
 
 # Canyon Textures
-# Texture TexHole
+Texture TexCleft			../assets/canyon/CanyonLeft.png
+Texture TexCright			../assets/canyon/CanyonRight.png
+Texture	TexHW1				../assets/canyon/HW1.png
+Texture	TexHW2				../assets/canyon/HW2.png
 # Texture TexSun
 # Texture TexHeatWave
 
@@ -52,25 +54,32 @@ Animation Butcher		TexButcher		1	0
 Animation Stand 		TexStand 		1 	0 
 Animation Run 			TexRun 			5 	5
 Animation Air			TexAir			1	0
+
 Animation Ground		TexGround		1	0
-Animation Ground2		TexGround2 		1	0
-Animation Tree1			TexTree1		1	0
-Animation Tree2			TexTree2		1	0
-Animation Tree3			TexTree3		1	0
 Animation Cloud1		TexCloud1		1	0
 Animation Cloud2		TexCloud2		1	0
-Animation ConP			TexConP			1	0
-Animation EnterForest		TexEnterForest		1	0
 Animation BlueBuilding  	TexBlueBuilding 	1	0
 Animation GreenBuilding  	TexGreenBuilding 	1 	0
 Animation RedBuilding  		TexRedBuilding 		1 	0
 Animation ButcherShop 		TexButcherShop 		1 	0
+
+Animation ConP			TexConP			1	0
+Animation EnterForest		TexEnterForest		1	0
+Animation Ground2		TexGround2 		1	0
+Animation Tree1			TexTree1		1	0
+Animation Tree2			TexTree2		1	0
+Animation Tree3			TexTree3		1	0
 Animation Clouds1 		TexClouds1 		1 	0
 Animation Clouds2 		TexClouds2		1 	0
-# Animation menuBkg		TexMenuBkg 		1 	0
-Animation End 			End 			1 	0 
+
+Animation Cright		TexCright		1	0
+Animation Cleft			TexCleft		1	0
+Animation HW1			TexHW1			6	6
+Animation HW2			TexHW2			6	6
+
 Animation Buster		TexBacon		1	0
 Animation Explosion		TexExplode		16 	4
 Animation Coin			TexCoin			13	2
 Animation Pickup1		Pickup1			12	2
-# End of Config
+
+# End of Assets.txt

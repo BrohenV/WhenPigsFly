@@ -3,6 +3,7 @@
 #include "Scene_Play.h"
 #include "Scene_Menu.h"
 #include "Action.h"
+#include "SoundPlayer.h"
 
 
 
@@ -17,13 +18,7 @@ void GameEngine::init(const std::string& path)
 	m_assets.loadFromFile(path);
 
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-	//if (desktop.getDesktopMode() == sf::VideoMode(m_windowSize.x, m_windowSize.y))
-		//m_window.create(desktop, "GEX 2023 - Final Project - When Pigs Fly!", sf::Style::Fullscreen);
-	//else
-		//m_window.create(sf::VideoMode(m_windowSize.x, m_windowSize.y), "GEX 2023 - Final Project - When Pigs Fly!", sf::Style::Titlebar | sf::Style::Close);
 	m_window.create(sf::VideoMode(1280, 768), "When Pigs Fly!");
-	//m_window.setFramerateLimit(60);
-
 	changeScene("MENU", std::make_shared<Scene_Menu>(this));
 }
 
@@ -61,8 +56,11 @@ std::shared_ptr<Scene> GameEngine::currentScene()
 
 void GameEngine::changeScene(const std::string& sceneName, std::shared_ptr<Scene> scene, bool endCurrentScene)
 {
-	if (endCurrentScene)
+	if (endCurrentScene) {
 		m_sceneMap.erase(m_currentScene);
+		SoundPlayer::getInstance().stopAll();
+		SoundPlayer::getInstance().removeStoppedSounds();
+	}
 
 	if (!m_sceneMap.contains(sceneName))
 		m_sceneMap[sceneName] = scene;
@@ -116,4 +114,9 @@ const Assets& GameEngine::assets() const
 bool GameEngine::isRunning()
 {
 	return (m_running && m_window.isOpen());
+}
+
+void  GameEngine::quitLevel() {
+	changeScene("MENU", std::make_shared<Scene_Menu>(this));
+	
 }

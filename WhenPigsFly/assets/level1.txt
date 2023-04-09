@@ -12,42 +12,43 @@ Sound QuitnTime 	../assets/Sound/QUITN-TIME.wav
 
 #     	gX, gY, cW, cH, sX, sY,  sM,  g,   bullet 
 Player 	5   2  	48   48   5  20  20  0.75  Buster
-Butcher 64  640 Buster
+Butcher 64  672 Buster
 
 # City Sprites
-#Dec ButcherShop	4	1
-Tile Pickup1		12 	7
-#Dec RedBuilding	9	1
-Tile BlueBuilding	11	1
-Tile GreenBuilding	14	1
-Tile BlueBuilding	16	1
-Tile GreenBuilding	20	1
-Tile GreenBuilding	22	1
-Tile BlueBuilding	24	1
-Tile RedBuilding	27	1
-Tile GreenBuilding	30	1
-Tile BlueBuilding	34	1
-Tile RedBuilding	38	1
-Tile RedBuilding	40	1
-Tile GreenBuilding	43	1
-Tile BlueBuilding	45	1
-Tile RedBuilding	49	1
-Tile BlueBuilding	52	1
-Tile RedBuilding	56	1
-Tile GreenBuilding	58	1
-Tile BlueBuilding	61	1
-Tile RedBuilding	65	1
-Tile GreenBuilding	67	1
-Tile BlueBuilding	70	1
-Tile RedBuilding	74	1
-Tile RedBuilding	76	1	
-Tile GreenBuilding	79	1
-Tile BlueBuilding	82	1
-Tile RedBuilding	86	1
-Tile GreenBuilding	89	1
-Tile BlueBuilding	92	1
-Tile RedBuilding	96	1
-Tile RedBuilding	98	1
+Dec ButcherShop		4	1
+Dec HW1			14	8
+Dec Pickup1		12 	7
+Dec RedBuilding		9	1
+Dec BlueBuilding	11	1
+Dec GreenBuilding	14	1
+Dec BlueBuilding	16	1
+Dec GreenBuilding	20	1
+Dec GreenBuilding	22	1
+Dec BlueBuilding	24	1
+Dec RedBuilding	27	1
+Dec GreenBuilding	30	1
+Dec BlueBuilding	34	1
+Dec RedBuilding	38	1
+Dec RedBuilding	40	1
+Dec GreenBuilding	43	1
+Dec BlueBuilding	45	1
+Dec RedBuilding	49	1
+Dec BlueBuilding	52	1
+Dec RedBuilding	56	1
+Dec GreenBuilding	58	1
+Dec BlueBuilding	61	1
+Dec RedBuilding	65	1
+Dec GreenBuilding	67	1
+Dec BlueBuilding	70	1
+Dec RedBuilding	74	1
+Dec RedBuilding	76	1	
+Dec GreenBuilding	79	1
+Dec BlueBuilding	82	1
+Dec RedBuilding	86	1
+Dec GreenBuilding	89	1
+Dec BlueBuilding	92	1
+Dec RedBuilding	96	1
+Dec RedBuilding	98	1
 Dec Clouds1	6	8
 Dec Clouds2	7	10
 Dec Clouds2	9	7
@@ -373,5 +374,6 @@ Dec Tree2	202	1
 Tile Ground2	203	0
 Tile Ground2	204	0
 Tile Ground2	205	0
+Tile Cleft	206	0
 
 # This is the end of the Level1

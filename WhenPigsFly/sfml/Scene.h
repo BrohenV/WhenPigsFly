@@ -21,6 +21,7 @@ protected:
 	EntityManager	m_entityManager;
 	ActionMap		m_actions;
 	bool			m_isPaused{false};
+	bool			m_isGameOver{ false };
 	bool			m_hasEnded{false};
 	size_t			m_currentFrame{ 0 };
 

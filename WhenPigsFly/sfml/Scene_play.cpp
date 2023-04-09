@@ -8,13 +8,15 @@
 #include "MusicPlayer.h"
 #include "SoundPlayer.h"
 #include "Scene_Menu.h"
+#include "Scene_Lose.h"
+#include "Scene_Win.h"
+#include "GameEngine.h"
 
 Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
-	: Scene(gameEngine)
+	: Scene(gameEngine) 
 	, m_levelPath(levelPath)
 {
 	init(m_levelPath);
-	
 }
 
 void Scene_Play::init(const std::string& levelPath)
@@ -56,9 +58,9 @@ void Scene_Play::update()
 	// TODO pause function
 	if (!m_isPaused) {
 		sf::View view = m_game->window().getView();
-		//std::cout << view.getCenter().x;
 		view.setCenter(view.getCenter().x + m_scrollSpeed, m_game->window().getSize().y - view.getCenter().y);
 		m_game->window().setView(view);
+
 		sMovement();
 		sLifespan();
 		sCollision();
@@ -358,6 +360,7 @@ void Scene_Play::sRender()
 		m_game->window().draw(paused);
 	}
 
+
 	m_game->window().display();
 }
 
@@ -556,11 +559,11 @@ void Scene_Play::loadFromFile(const std::string& path)
 
 void Scene_Play::spawnPlayer()
 {
-
 	m_player = m_entityManager.addEntity("player");
 	m_player->addComponent<CAnimation>(m_game->assets().getAnimation("Run"), true);
 	m_player->addComponent<CTransform>(gridToMidPixel(m_playerConfig.X, m_playerConfig.Y, m_player));
 	m_player->addComponent<CBoundingBox>(sf::Vector2f(m_playerConfig.CW, m_playerConfig.CH));
+	m_player->addComponent<CCollision>(20.f);
 	m_player->addComponent<CGravity>(m_playerConfig.GRAVITY);
 	m_player->addComponent<CState>();
 
@@ -611,7 +614,7 @@ void Scene_Play::createKnife(sf::Vector2f pos) {
 	knife->addComponent<CCollision>(3);
 	knife->addComponent<CBoundingBox>(m_game->assets().getAnimation(m_butcherConfig.WEAPON).getSize());
 
-	SoundPlayer::getInstance().play("KnifeThrow", pos);
+	SoundPlayer::getInstance().play("KnifeThrow", pos, 25);
 }
 
 void Scene_Play::checkKnifeCollision() {
@@ -627,7 +630,9 @@ void Scene_Play::checkKnifeCollision() {
 				auto bCr = knife->getComponent<CCollision>().radius;
 
 				if (dist(pPos, bPos) < (pCr + bCr)) {
+					//std::cout << "Knife destroied";
 					knife->destroy();
+					m_player->destroy();
 				
 				}
 			}
@@ -649,7 +654,7 @@ void Scene_Play::checkIfDead(std::shared_ptr<Entity> e) {
 			//e->addComponent<CState>().state = "dead";
 			//e->removeComponent<CCollision>();
 
-			SoundPlayer::getInstance().play("BaconBomb", e->getComponent<CTransform>().pos);
+			//SoundPlayer::getInstance().play("BaconBomb", e->getComponent<CTransform>().pos);
 
 		}
 	}
@@ -665,8 +670,13 @@ void Scene_Play::removeOutOfBounds()
 		plrPos.y < getViewBounds().top ||
 		plrPos.y > killDepth
 		) {
-		m_game->changeScene("MENU", std::make_shared<Scene_Menu>(m_game));
-		MusicPlayer::getInstance().play("loseTheme");
+
+		sf::View view = m_game->window().getView();
+		view.setCenter(0, m_game->window().getSize().y - view.getCenter().y);
+		m_game->window().setView(view);
+		m_game->quitLevel();
+		//m_game->changeScene("LOSE", std::make_shared<Scene_Lose>(m_game));
+		//MusicPlayer::getInstance().play("loseTheme");
 		m_player->getComponent<CState>().isDead = true;
 		//SoundPlayer::getInstance().removeStoppedSounds();
 		//m_player->destroy();

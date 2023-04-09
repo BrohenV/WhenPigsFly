@@ -3,7 +3,7 @@
 #include "Common.h"
 #include "Scene.h"
 #include <map>
-
+#include "GameEngine.h"
 #include "EntityManager.h"
 
 class Scene_Play : public Scene
@@ -28,7 +28,7 @@ protected:
 	std::shared_ptr<Entity>		m_butcher;
 	std::string					m_levelPath;
 	PlayerConfig				m_playerConfig;
-
+	sf::Vector2f                m_spawnPosition;
 	ButcherConfig			    m_butcherConfig;
 	float                       m_butcherSpeed{ 2.f };
 

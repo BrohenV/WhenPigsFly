@@ -53,6 +53,12 @@ void SoundPlayer::removeStoppedSounds() {
         });
 }
 
+void SoundPlayer::stopAll()
+{
+    for (auto& sound : m_sounds) {
+        sound.stop();
+    }
+}
 
 void SoundPlayer::setListnerPosition(sf::Vector2f position) {
     sf::Listener::setPosition(position.x, -position.y, ListenerZ);

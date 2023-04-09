@@ -34,7 +34,7 @@ public:
     void			    removeStoppedSounds();
     void			    setListnerPosition(sf::Vector2f position);
     sf::Vector2f	    getListnerPosition() const;
-
+    void                stopAll();
     bool                isEmpty() const;
     void			    loadBuffer(String id, const String path);
 };

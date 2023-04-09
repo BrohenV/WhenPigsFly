@@ -4,7 +4,7 @@ D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Entity.h(43,36): warning C424
           [
               _Ty=int
           ]
-D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(611): message : see reference to function template instantiation 'T &Entity::addComponent<CCollision,int>(int &&)' being compiled
+D:\Final Game Project\WhenPigsFly\WhenPigsFly\sfml\Scene_play.cpp(614): message : see reference to function template instantiation 'T &Entity::addComponent<CCollision,int>(int &&)' being compiled
           with
           [
               T=CCollision

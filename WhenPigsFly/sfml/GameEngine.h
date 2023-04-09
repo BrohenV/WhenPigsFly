@@ -38,7 +38,7 @@ public:
 
 	void quit();
 	void run();
-
+	void                    quitLevel();
 	sf::RenderWindow& window();
 	const Assets& assets() const;
 	bool isRunning();
