@@ -58,8 +58,6 @@ void GameEngine::changeScene(const std::string& sceneName, std::shared_ptr<Scene
 {
 	if (endCurrentScene) {
 		m_sceneMap.erase(m_currentScene);
-		SoundPlayer::getInstance().stopAll();
-		SoundPlayer::getInstance().removeStoppedSounds();
 	}
 
 	if (!m_sceneMap.contains(sceneName))
@@ -117,6 +115,6 @@ bool GameEngine::isRunning()
 }
 
 void  GameEngine::quitLevel() {
-	changeScene("MENU", std::make_shared<Scene_Menu>(this));
+	changeScene("MENU", std::make_shared<Scene_Menu>(this), true);
 	
 }

@@ -51,6 +51,7 @@ void SoundPlayer::removeStoppedSounds() {
     m_sounds.remove_if([](const sf::Sound& s) {
         return s.getStatus() == sf::Sound::Stopped;
         });
+    m_soundBuffers.clear();
 }
 
 void SoundPlayer::stopAll()

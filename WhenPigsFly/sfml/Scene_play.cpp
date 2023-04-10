@@ -674,9 +674,11 @@ void Scene_Play::removeOutOfBounds()
 		sf::View view = m_game->window().getView();
 		view.setCenter(0, m_game->window().getSize().y - view.getCenter().y);
 		m_game->window().setView(view);
+		SoundPlayer::getInstance().stopAll();
+		SoundPlayer::getInstance().removeStoppedSounds();
 		m_game->quitLevel();
-		//m_game->changeScene("LOSE", std::make_shared<Scene_Lose>(m_game));
-		//MusicPlayer::getInstance().play("loseTheme");
+		/*m_game->changeScene("LOSE", std::make_shared<Scene_Lose>(m_game));
+		MusicPlayer::getInstance().play("loseTheme");*/
 		m_player->getComponent<CState>().isDead = true;
 		//SoundPlayer::getInstance().removeStoppedSounds();
 		//m_player->destroy();
