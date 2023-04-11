@@ -30,7 +30,7 @@ void Scene_Credits::init()
 	m_menuText.setCharacterSize(CHAR_SIZE);
 }
 
-void Scene_Credits::update()
+void Scene_Credits::update(sf::Time dt)
 {
 	m_entityManager.update();
 	//sRender();

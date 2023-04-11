@@ -32,7 +32,7 @@ void Scene_Sum::init()
 	m_menuText.setCharacterSize(CHAR_SIZE);
 }
 
-void Scene_Sum::update()
+void Scene_Sum::update(sf::Time dt)
 {
 	m_entityManager.update();
 	//sRender();

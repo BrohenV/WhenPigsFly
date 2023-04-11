@@ -31,7 +31,7 @@ protected:
 	sf::Vector2f                m_spawnPosition;
 	ButcherConfig			    m_butcherConfig;
 	float                       m_butcherSpeed{ 3.1f };
-	float                       m_finishLineCrossingYPoint{ 600 };
+	float                       m_finishLineCrossingYPoint{ 17980 };
 	bool                        playerCrossedFinishLine();
 	bool                        m_playerWon{ false };
 	bool						m_drawTextures{true};						
@@ -51,7 +51,7 @@ protected:
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
 	
-	void	update() override;
+	void	update(sf::Time dt) override;
 	sf::View        m_worldView;
 	sf::FloatRect   m_worldBounds;
 	sf::FloatRect	getViewBounds();

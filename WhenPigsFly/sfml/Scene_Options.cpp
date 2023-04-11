@@ -41,7 +41,7 @@ void Scene_Options::init()
 
 }
 
-void Scene_Options::update()
+void Scene_Options::update(sf::Time dt)
 {
 	m_entityManager.update();
 	//sRender();

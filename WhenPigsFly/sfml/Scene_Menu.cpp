@@ -43,7 +43,7 @@ void Scene_Menu::init()
 
 }
 
-void Scene_Menu::update()
+void Scene_Menu::update(sf::Time dt)
 {
 	m_entityManager.update();
 	//sRender();

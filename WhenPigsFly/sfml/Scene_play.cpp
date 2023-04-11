@@ -50,7 +50,7 @@ void Scene_Play::registerActions()
 	registerAction(sf::Keyboard::Space, "SHOOT");
 }
 
-void Scene_Play::update()
+void Scene_Play::update(sf::Time dt)
 {
 	m_entityManager.update();
 	
@@ -75,7 +75,25 @@ void Scene_Play::update()
 
 			knifeTimer -= knifeInterval;
 		}
+		if (playerCrossedFinishLine())
+		{
+			m_game->changeScene("WIN", std::make_shared<Scene_Win>(m_game));
+			MusicPlayer::getInstance().play("winTheme");
+
+			SoundPlayer::getInstance().stopAll();
+			SoundPlayer::getInstance().removeStoppedSounds();
+		}
 	}
+}
+
+bool Scene_Play::playerCrossedFinishLine()
+{
+	auto playerPos = m_player->getComponent<CTransform>().pos;
+	auto playerX = playerPos.x;
+
+	// when the center of the player sprite crosses the finish line
+	return (playerX > m_finishLineCrossingYPoint);
+
 }
 
 void Scene_Play::checkPlayerState() {
@@ -131,7 +149,7 @@ void Scene_Play::sMovement()
 		if (e->getTag() == "butcher") {
 			auto& pt = e->getComponent<CTransform>();
 			pt.pos += pt.vel * dt.asSeconds();
-			std::cout << "apple";
+			//std::cout << "apple";
 		}
 	}
 
@@ -396,7 +414,7 @@ void Scene_Play::sDoAction(const Action& action)
 		else if (action.name() == "JUMP") {
 			if (m_player->getComponent<CInput>().canJump && m_player->getComponent<CState>().isDead != true) {
 				m_player->getComponent<CInput>().up = true;
-				SoundPlayer::getInstance().play("Flap", pos, 25);
+				SoundPlayer::getInstance().play("Flap", pos, 7);
 				//createKnife(pos);
 			}
 		}
@@ -620,7 +638,7 @@ void Scene_Play::createKnife(sf::Vector2f pos) {
 	knife->addComponent<CCollision>(3);
 	knife->addComponent<CBoundingBox>(m_game->assets().getAnimation(m_butcherConfig.WEAPON).getSize());
 
-	SoundPlayer::getInstance().play("KnifeThrow", pos, 15);
+	SoundPlayer::getInstance().play("KnifeThrow", pos, 7);
 }
 
 void Scene_Play::checkKnifeCollision() {

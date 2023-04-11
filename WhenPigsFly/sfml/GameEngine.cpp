@@ -88,7 +88,7 @@ void GameEngine::run()
 		timeSinceLastUpdate += clock.restart();		 
 		while (timeSinceLastUpdate > SPF)
 		{
-			currentScene()->update();				// update world
+			currentScene()->update(timeSinceLastUpdate);				// update world
 			timeSinceLastUpdate -= SPF;
 		}
 

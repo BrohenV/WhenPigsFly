@@ -17,7 +17,7 @@ private:
 public:
 	Scene_Win(GameEngine* gameEngine);
 
-	void update() override;
+	void update(sf::Time dt) override;
 
 
 	void sRender() override;

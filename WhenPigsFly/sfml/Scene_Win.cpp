@@ -31,7 +31,7 @@ void Scene_Win::init()
 
 }
 
-void Scene_Win::update()
+void Scene_Win::update(sf::Time dt)
 {
 	m_entityManager.update();
 	//sRender();

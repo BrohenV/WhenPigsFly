@@ -31,7 +31,7 @@ void Scene_Lose::init()
 
 }
 
-void Scene_Lose::update()
+void Scene_Lose::update(sf::Time dt)
 {
 	m_entityManager.update();
 	//sRender();

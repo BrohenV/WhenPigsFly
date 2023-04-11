@@ -33,7 +33,7 @@ void Scene_Audio::init()
 	m_menuText.setCharacterSize(CHAR_SIZE);
 }
 
-void Scene_Audio::update()
+void Scene_Audio::update(sf::Time dt)
 {
 	m_entityManager.update();
 	//sRender();

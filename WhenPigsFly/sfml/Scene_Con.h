@@ -18,7 +18,7 @@ public:
 
 	Scene_Con(GameEngine* gameEngine);
 
-	void update() override;
+	void update(sf::Time dt) override;
 
 	void sRender() override;
 	void sDoAction(const Action& action) override;
