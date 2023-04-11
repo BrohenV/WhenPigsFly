@@ -31,7 +31,9 @@ protected:
 	sf::Vector2f                m_spawnPosition;
 	ButcherConfig			    m_butcherConfig;
 	float                       m_butcherSpeed{ 2.f };
-
+	float                       m_finishLineCrossingYPoint{ 600 };
+	bool                            playerCrossedFinishLine();
+	bool                        m_playerWon{ false };
 	bool						m_drawTextures{true};						
 	bool						m_drawCollision{false}; 
 	bool						m_drawGrid{false};

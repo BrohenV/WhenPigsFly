@@ -16,8 +16,7 @@ Butcher 64  672 Buster
 
 # City Sprites
 Dec ButcherShop		4	1
-Dec HW1			14	8
-Dec Pickup1		12 	7
+# Dec Pickup1		12 	7
 Dec RedBuilding		9	1
 Dec BlueBuilding	11	1
 Dec GreenBuilding	14	1
@@ -375,5 +374,46 @@ Tile Ground2	203	0
 Tile Ground2	204	0
 Tile Ground2	205	0
 Tile Cleft	206	0
+Dec HW1		208	9
+Dec HW1		211	10
+Dec HW1		211	8
+Dec HW1		214	9
+Dec HW1		217	10
+Dec HW1		217	8
+Dec HW1		220	9
+Dec HW1		223	10
+Dec HW1		223	8
+Dec HW1		226	9
+Dec HW1		229	10
+Dec HW1		229	8
+Dec HW1		232	9
+Dec HW1		235	10
+Dec HW1		235	8
+Dec HW1		238	9
+Dec HW1		241	10	
+Dec HW1		241	8
+Dec HW2		244	9
+Dec HW2		247	10
+Dec HW2		247	8
+Dec HW2		250	9
+Dec HW2		253	10
+Dec HW2		253 	8
+Dec HW2		256	9
+Dec HW2		259	10
+Dec HW2		259	8
+Dec HW2		262	9
+Dec HW2		265	10
+Dec HW2		265	8
+Dec HW2		268	9
+Dec HW2		271	10
+Dec HW2		271	8
+Dec HW2		274	9
+Dec HW2		277	10
+Dec HW2		277	8
+Dec Win		280	0
+
+
+	
+
 
 # This is the end of the Level1

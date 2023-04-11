@@ -3,10 +3,10 @@
 
 
 MusicPlayer::MusicPlayer() {
-    m_filenames["gameTheme"] = "../assets/Music/GAMEPLAY-MUSIC.ogg";
-    m_filenames["menuTheme"] = "../assets/Music/MENU-MUSIC.ogg";
-    m_filenames["winTheme"] = "../assets/Music/VICTORY-MUSIC.ogg";
-    m_filenames["loseTheme"] = "../assets/Music/DEATH-MUSIC.ogg";
+    m_filenames["gameTheme"] = "../assets/Music/GAMEPLAY-MUSIC-REDONE.ogg";
+    m_filenames["menuTheme"] = "../assets/Music/MENU-MUSIC-REWORKED.ogg";
+    m_filenames["winTheme"] = "../assets/Music/WIN-THEME-REDONE.ogg";
+    m_filenames["loseTheme"] = "../assets/Music/DEATH-THEME-REDONE.ogg";
 
 }
 
