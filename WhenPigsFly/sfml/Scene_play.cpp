@@ -68,7 +68,13 @@ void Scene_Play::update()
 		playerCheckState();
 		removeOutOfBounds();
 		checkKnifeCollision();
-		
+		knifeTimer += dt;
+		if (knifeTimer > knifeInterval) {
+			for (auto e : m_entityManager.getEntities("butcher"))
+				createKnife(e->getComponent<CTransform>().pos);
+
+			knifeTimer -= knifeInterval;
+		}
 	}
 }
 
@@ -125,7 +131,7 @@ void Scene_Play::sMovement()
 		if (e->getTag() == "butcher") {
 			auto& pt = e->getComponent<CTransform>();
 			pt.pos += pt.vel * dt.asSeconds();
-			//pt.rot += pt.rotVel * dt.asSeconds();
+			std::cout << "apple";
 		}
 	}
 
@@ -401,7 +407,7 @@ void Scene_Play::sDoAction(const Action& action)
 				spawnBullet(m_player);
 				m_player->getComponent<CInput>().shoot = true;
 				m_player->getComponent<CInput>().canShoot = false;
-				SoundPlayer::getInstance().play("BaconBomb", pos, 25);
+				SoundPlayer::getInstance().play("BaconBomb", pos, 15);
 
 				
 			}
@@ -566,7 +572,7 @@ void Scene_Play::spawnPlayer()
 	m_player->addComponent<CCollision>(20.f);
 	m_player->addComponent<CGravity>(m_playerConfig.GRAVITY);
 	m_player->addComponent<CState>();
-
+	
 }
 
 void Scene_Play::spawnButcher(sf::Vector2f pos, std::string size) {
@@ -610,11 +616,11 @@ void Scene_Play::createKnife(sf::Vector2f pos) {
 
 	auto knife = m_entityManager.addEntity("knife");
 	knife->addComponent<CTransform>(pos, sf::Vector2f(speed, 0.f));
-	knife->addComponent<CAnimation>(m_game->assets().getAnimation("Stand"));
+	knife->addComponent<CAnimation>(m_game->assets().getAnimation("Knife"));
 	knife->addComponent<CCollision>(3);
 	knife->addComponent<CBoundingBox>(m_game->assets().getAnimation(m_butcherConfig.WEAPON).getSize());
 
-	SoundPlayer::getInstance().play("KnifeThrow", pos, 25);
+	SoundPlayer::getInstance().play("KnifeThrow", pos, 15);
 }
 
 void Scene_Play::checkKnifeCollision() {
@@ -681,15 +687,7 @@ void Scene_Play::removeOutOfBounds()
 		SoundPlayer::getInstance().stopAll();
 		SoundPlayer::getInstance().removeStoppedSounds();
 		
-		m_game->quitLevel();
-		m_player->getComponent<CState>().isDead = true;
-		//SoundPlayer::getInstance().removeStoppedSounds();
-		//m_player->destroy();
-		//spawnPlayer();
-		//m_player = nullptr;
-		//m_game->changeScene<C
-		
-
+		m_player->getComponent<CState>().isDead = true;		
 	}
 
 	

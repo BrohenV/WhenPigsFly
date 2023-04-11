@@ -10,9 +10,8 @@ Sound KnifeThrow 	../assets/Sound/KNIFE-THROW.wav
 Sound WingsUp 		../assets/Sound/WINGS-UP.wav
 Sound QuitnTime 	../assets/Sound/QUITN-TIME.wav
 
-#     	gX, gY, cW, cH, sX, sY,  sM,  g,   bullet 
-Player 	5   2  	48   48   5  20  20  0.75  Buster
-Butcher 64  672 Buster
+
+
 
 # City Sprites
 Dec ButcherShop		4	1
@@ -117,7 +116,7 @@ Dec Clouds2	93	7
 Dec Clouds2	96	9
 Dec Clouds1	98	8
 Dec Clouds2	99	10
-
+Butcher 64  672 Buster
 # City
 Tile Ground 	0	0
 Tile Ground 	1	0
@@ -373,8 +372,11 @@ Dec Tree2	202	1
 Tile Ground2	203	0
 Tile Ground2	204	0
 Tile Ground2	205	0
+
+# Canyon
 Tile Cleft	206	0
 Dec HW1		208	9
+Dec EnterCanyon	204	8
 Dec HW1		211	10
 Dec HW1		211	8
 Dec HW1		214	9
@@ -392,28 +394,30 @@ Dec HW1		235	8
 Dec HW1		238	9
 Dec HW1		241	10	
 Dec HW1		241	8
-Dec HW2		244	9
-Dec HW2		247	10
-Dec HW2		247	8
-Dec HW2		250	9
-Dec HW2		253	10
-Dec HW2		253 	8
-Dec HW2		256	9
-Dec HW2		259	10
-Dec HW2		259	8
-Dec HW2		262	9
-Dec HW2		265	10
-Dec HW2		265	8
-Dec HW2		268	9
-Dec HW2		271	10
-Dec HW2		271	8
-Dec HW2		274	9
-Dec HW2		277	10
-Dec HW2		277	8
-Dec Win		280	0
+Dec HW2		245	9
+Dec HW2		248	10
+Dec HW2		248	8
+Dec HW2		251	9
+Dec HW2		254	10
+Dec HW2		254 	8
+Dec HW2		257	9
+Dec HW2		260	10
+Dec HW2		260	8
+Dec HW2		263	9
+Dec HW2		266	10
+Dec HW2		266	8
+Dec HW2		269	9
+Dec HW2		272	10
+Dec HW2		272	8
+Dec HW2		275	9
+Dec HW2		278	10
+Dec HW2		278	8
+Dec Win		281	0
 
 
-	
+
+#     	gX, gY, cW, cH, sX, sY,  sM,  g,   bullet 
+Player 	5   2  	48   48   5  20  20  0.75  Buster
 
 
 # This is the end of the Level1

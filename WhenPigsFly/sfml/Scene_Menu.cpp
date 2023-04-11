@@ -113,7 +113,7 @@ void Scene_Menu::sDoAction(const Action& action)
 		{
 			switch (m_menuIndex) {
 				case 0:
-					m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game, m_levelPaths[m_menuIndex]));
+					m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game, m_levelPaths[m_menuIndex]), true);
 					break;
 				case 1:
 					m_game->changeScene("OPTIONS", std::make_shared<Scene_Options>(m_game));

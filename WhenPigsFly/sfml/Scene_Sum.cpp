@@ -52,6 +52,14 @@ void Scene_Sum::sRender()
 
 	m_game->window().clear(backgroundColor);
 
+	auto windowSize = m_game->window().getSize();
+	sf::Sprite bkg = sf::Sprite{};
+	bkg.setTexture(m_game->assets().getTexture("menusBkg"));
+
+	auto bkgPosY = bkg.getLocalBounds().height - windowSize.y;
+	bkg.setOrigin(0.f, bkgPosY);
+	m_game->window().draw(bkg);
+
 	m_menuText.setFillColor(normalColor);
 	m_menuText.setString(m_title);
 	float textwidth = m_menuText.getGlobalBounds().width;

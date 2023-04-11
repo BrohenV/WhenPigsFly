@@ -9,6 +9,7 @@ Font Megaman 			../assets/fonts/megaman.ttf
 Font ShantellSans		../assets/fonts/ShantellSans-Regular.ttf
 
 Texture menuBkg			../assets/Menu/TitleScreen.png
+Texture menusBkg		../assets/Menu/menus.png
 Texture winBkg			../assets/Menu/WinScreen.png
 Texture loseBkg			../assets/Menu/GameOverScreen.png
 Texture End			../assets/pig/end.png
@@ -19,6 +20,7 @@ Texture TexStand 		../assets/pig/stand.png
 Texture TexAir 			../assets/pig/jump.png
 Texture TexRun      		../assets/pig/run.png
 Texture TexButcher		../assets/pig/butcher.png
+Texture TexKnife		../assets/pig/knife.png
 Texture TexBacon 		../assets/pig/bacon.png
 Texture TexExplode 		../assets/misc/explosion.png
 Texture TexCoin 		../assets/misc/coinspin.png
@@ -48,8 +50,10 @@ Texture TexCright			../assets/canyon/CanyonRight.png
 Texture	TexHW1				../assets/canyon/HW1.png
 Texture	TexHW2				../assets/canyon/HW2.png
 Texture	TexWin				../assets/canyon/Win.png
+Texture TexEnterCanyon			../assets/canyon/enteringCanyon.png
 
 Animation Butcher		TexButcher		1	0
+Animation Knife			TexKnife		1	0
 Animation Stand 		TexStand 		1 	0 
 Animation Run 			TexRun 			5 	5
 Animation Air			TexAir			1	0
@@ -76,6 +80,7 @@ Animation Cleft			TexCleft		1	0
 Animation HW1			TexHW1			1	0
 Animation HW2			TexHW2			1	0
 Animation Win			TexWin			1	0
+Animation EnterCanyon		TexEnterCanyon		1	0
 
 Animation Buster		TexBacon		1	0
 Animation Explosion		TexExplode		16 	4

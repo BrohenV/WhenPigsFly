@@ -30,9 +30,9 @@ protected:
 	PlayerConfig				m_playerConfig;
 	sf::Vector2f                m_spawnPosition;
 	ButcherConfig			    m_butcherConfig;
-	float                       m_butcherSpeed{ 2.f };
+	float                       m_butcherSpeed{ 3.1f };
 	float                       m_finishLineCrossingYPoint{ 600 };
-	bool                            playerCrossedFinishLine();
+	bool                        playerCrossedFinishLine();
 	bool                        m_playerWon{ false };
 	bool						m_drawTextures{true};						
 	bool						m_drawCollision{false}; 
@@ -42,7 +42,7 @@ protected:
 	void						init(const std::string& levelPath);
 	void						registerActions();
 	void						onEnd() override;
-	float                       m_scrollSpeed{2};
+	float                       m_scrollSpeed{3};
 	sf::Time					dt;
 	void						checkPlayerState();
 	sf::SoundBuffer				buffer;
@@ -68,6 +68,8 @@ public:
 	void			checkKnifeCollision();
 	void			checkIfDead(std::shared_ptr<Entity> e);
 	void			sDebug();
+	sf::Time		knifeInterval{ sf::seconds(2.f) };
+	sf::Time		knifeTimer{ sf::seconds(0.f) };
 	void			drawLine();
 	void			playerCheckState();
 	sf::Vector2f	gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity> entity);

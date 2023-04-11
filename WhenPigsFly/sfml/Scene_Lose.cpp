@@ -82,6 +82,7 @@ void Scene_Lose::sDoAction(const Action& action)
 	{
 		if (action.name() == "QUIT")
 		{
+			m_game->quitLevel();
 			m_game->changeScene("MENU", std::make_shared<Scene_Menu>(m_game));
 		}
 	}
